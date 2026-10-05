@@ -14,6 +14,8 @@ import { cn } from "~/lib/utils";
 export const INSTAGRAM_URL = "https://www.instagram.com/drops.in.the.ocean";
 export const FACEBOOK_URL =
   "https://www.facebook.com/profile.php?id=61589198731985";
+export const YOUTUBE_URL =
+  "https://youtu.be/51VFiMRKIp8?is=_tCvaoSDyG-VXLjR";
 
 export function SiteShell({
   lang,
