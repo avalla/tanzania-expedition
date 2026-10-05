@@ -31,26 +31,19 @@ export function SiteShell({
   const copy = getCopy(lang);
 
   return (
-    <div className="min-h-screen bg-[#11100f] text-[#f5eddd]">
-      <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#11100f]/80 backdrop-blur-xl">
-        <div className="mx-auto flex h-20 max-w-7xl items-center gap-5 px-5 lg:px-8">
+    <div className="min-h-screen bg-[#545156] text-[#efe6d1]">
+      <header className="fixed inset-x-0 top-0 z-50 border-t-[6px] border-[#df3946] bg-[#545156]/94 shadow-[0_8px_28px_rgba(0,0,0,.12)] backdrop-blur-xl">
+        <div className="mx-auto flex h-[74px] max-w-7xl items-center gap-5 px-5 lg:px-8">
           <Link
             to={hrefFor(lang)}
-            className="mr-auto flex items-center gap-3"
+            className="mr-auto flex items-center"
             aria-label="Tanzania Expedition"
           >
-            <span className="relative grid size-10 place-items-center overflow-hidden rounded-full border border-[#f5b73b]/45 bg-[#1a1714]">
-              <span className="absolute size-5 rounded-full bg-[#f5b73b]" />
-              <span className="absolute bottom-1 h-3 w-12 -rotate-6 bg-[#149784]" />
-            </span>
-            <span className="leading-none">
-              <span className="block font-display text-lg font-extrabold uppercase tracking-[0.12em] text-white">
-                Tanzania
-              </span>
-              <span className="block text-[10px] font-bold uppercase tracking-[0.32em] text-[#f5b73b]">
-                Expedition
-              </span>
-            </span>
+            <img
+              src="/media/communique-logo.svg"
+              alt="Tanzania Expedition"
+              className="h-11 w-auto max-w-[220px]"
+            />
           </Link>
 
           <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">
@@ -62,7 +55,7 @@ export function SiteShell({
                   "rounded-full px-3 py-2 text-sm font-medium text-white/70 transition hover:bg-white/6 hover:text-white",
                   currentPage === page && "bg-white/7 text-white",
                   page === "support" &&
-                    "ml-2 bg-[#e94235] px-4 text-white hover:bg-[#f05245]",
+                    "ml-2 bg-[#df3946] px-4 text-white hover:bg-[#f05245]",
                 )}
               >
                 {copy.nav[page]}
@@ -74,7 +67,7 @@ export function SiteShell({
             <summary className="cursor-pointer list-none rounded-full border border-white/15 px-3 py-2 text-xs font-bold uppercase tracking-[0.14em] text-white/80 hover:bg-white/6">
               {lang.toUpperCase()}
             </summary>
-            <div className="absolute right-0 mt-3 w-40 rounded-2xl border border-white/10 bg-[#191715] p-2 shadow-2xl">
+            <div className="absolute right-0 mt-3 w-40 rounded-2xl border border-white/10 bg-[#4b494e] p-2 shadow-2xl">
               {LANGUAGES.map((target) => (
                 <Link
                   key={target}
@@ -95,7 +88,7 @@ export function SiteShell({
               <Menu className="size-5" />
               <span className="sr-only">{copy.common.menu}</span>
             </summary>
-            <div className="absolute right-0 mt-3 w-72 rounded-3xl border border-white/10 bg-[#191715] p-3 shadow-2xl">
+            <div className="absolute right-0 mt-3 w-72 rounded-3xl border border-white/10 bg-[#4b494e] p-3 shadow-2xl">
               <nav className="grid gap-1">
                 {PAGE_KEYS.map((page) => (
                   <Link
@@ -126,14 +119,29 @@ export function SiteShell({
         </div>
       </header>
 
+      {currentPage ? (
+        <div
+          aria-hidden="true"
+          className="pointer-events-none fixed bottom-0 right-0 z-20 hidden w-[230px] opacity-[0.12] 2xl:block"
+        >
+          <img
+            src="/media/communique-camel.svg"
+            alt=""
+            className="h-auto w-full"
+          />
+        </div>
+      ) : null}
+
       {children}
 
-      <footer className="border-t border-white/10 bg-[#0d0c0b]">
+      <footer className="border-t border-white/10 border-b-[10px] border-b-[#df3946] bg-[#4a484d]">
         <div className="mx-auto grid max-w-7xl gap-10 px-5 py-12 md:grid-cols-[1.2fr_.8fr] lg:px-8">
           <div>
-            <div className="font-display text-2xl font-black uppercase tracking-[0.08em]">
-              Tanzania Expedition
-            </div>
+            <img
+              src="/media/communique-logo.svg"
+              alt="Tanzania Expedition"
+              className="h-14 w-auto max-w-[280px]"
+            />
             <p className="mt-3 max-w-xl text-sm leading-6 text-white/55">
               {copy.common.sourceNote}
             </p>
@@ -143,7 +151,7 @@ export function SiteShell({
               href={INSTAGRAM_URL}
               target="_blank"
               rel="noreferrer"
-              className="grid size-11 place-items-center rounded-full border border-white/12 text-white/70 transition hover:border-[#e94235]/50 hover:text-white"
+              className="grid size-11 place-items-center rounded-full border border-white/12 text-white/70 transition hover:border-[#df3946]/50 hover:text-white"
               aria-label={copy.common.instagram}
             >
               <Instagram className="size-5" />
@@ -152,7 +160,7 @@ export function SiteShell({
               href={FACEBOOK_URL}
               target="_blank"
               rel="noreferrer"
-              className="grid size-11 place-items-center rounded-full border border-white/12 text-white/70 transition hover:border-[#149784]/50 hover:text-white"
+              className="grid size-11 place-items-center rounded-full border border-white/12 text-white/70 transition hover:border-[#00a875]/50 hover:text-white"
               aria-label={copy.common.facebook}
             >
               <Facebook className="size-5" />
@@ -161,7 +169,7 @@ export function SiteShell({
               href={YOUTUBE_URL}
               target="_blank"
               rel="noreferrer"
-              className="grid size-11 place-items-center rounded-full border border-white/12 text-white/70 transition hover:border-[#f5b73b]/60 hover:text-white"
+              className="grid size-11 place-items-center rounded-full border border-white/12 text-white/70 transition hover:border-[#fab937]/60 hover:text-white"
               aria-label="YouTube"
             >
               <Youtube className="size-5" />
