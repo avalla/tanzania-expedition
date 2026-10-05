@@ -72,7 +72,7 @@ export default function Mission2022({ loaderData }: Route.ComponentProps) {
   return (
     <SiteShell lang={lang} currentPage="missions" detail="2022">
       <main className="pt-20">
-        <section className="relative min-h-[70svh] overflow-hidden border-b border-white/10 bg-[radial-gradient(circle_at_70%_25%,rgba(245,183,59,.26),transparent_22%),linear-gradient(140deg,#251711,#11100f_64%)]">
+        <section className="relative min-h-[70svh] overflow-hidden border-b border-white/10 bg-[radial-gradient(circle_at_70%_25%,rgba(245,183,59,.26),transparent_22%),linear-gradient(140deg,#251711,#545156_64%)]">
           <div className="grain absolute inset-0 opacity-30" />
           <div className="relative mx-auto flex min-h-[70svh] max-w-7xl items-end px-5 py-20 lg:px-8">
             <div className="w-full">
@@ -85,12 +85,12 @@ export default function Mission2022({ loaderData }: Route.ComponentProps) {
               </Link>
               <div className="grid gap-8 md:grid-cols-[1fr_auto] md:items-end">
                 <div>
-                  <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#f5b73b]">
+                  <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#fab937]">
                     {copy.mission2022.eyebrow}
                   </p>
                   <h1 className="mt-4 font-display text-[clamp(5rem,13vw,11rem)] font-black uppercase leading-[0.78]">
                     Tanzania
-                    <span className="block text-[#e94235]">2022</span>
+                    <span className="block text-[#df3946]">2022</span>
                   </h1>
                 </div>
                 <p className="max-w-md pb-2 text-base leading-7 text-white/60">
@@ -101,12 +101,12 @@ export default function Mission2022({ loaderData }: Route.ComponentProps) {
           </div>
         </section>
 
-        <section className="bg-[#f5eddd] text-[#171411]">
+        <section className="bg-[#efe6d1] text-[#504e53]">
           <div className="mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-28">
             <div className="grid gap-px overflow-hidden rounded-[2rem] border border-black/10 bg-black/10 md:grid-cols-3">
               {impactCards.map(({ Icon, title, body }) => (
                 <article key={title} className="bg-[#fbf6eb] p-8">
-                  <Icon className="size-7 text-[#149784]" />
+                  <Icon className="size-7 text-[#00a875]" />
                   <h2 className="mt-6 font-display text-4xl font-black uppercase">
                     {title}
                   </h2>
@@ -124,7 +124,7 @@ export default function Mission2022({ loaderData }: Route.ComponentProps) {
         <section className="mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-28">
           <div className="grid gap-10 lg:grid-cols-[.8fr_1.2fr]">
             <div>
-              <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#149784]">
+              <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#00a875]">
                 {copy.mission2022.mediaTitle}
               </p>
               <h2 className="mt-4 font-display text-5xl font-black uppercase leading-none md:text-7xl">
@@ -142,7 +142,7 @@ export default function Mission2022({ loaderData }: Route.ComponentProps) {
                 rel="noreferrer"
                 className="group rounded-3xl border border-white/10 bg-white/[0.035] p-7"
               >
-                <Instagram className="size-7 text-[#e94235]" />
+                <Instagram className="size-7 text-[#df3946]" />
                 <h3 className="mt-16 font-display text-3xl font-black uppercase">
                   Instagram
                 </h3>
@@ -154,7 +154,7 @@ export default function Mission2022({ loaderData }: Route.ComponentProps) {
                 rel="noreferrer"
                 className="group rounded-3xl border border-white/10 bg-white/[0.035] p-7"
               >
-                <Facebook className="size-7 text-[#149784]" />
+                <Facebook className="size-7 text-[#00a875]" />
                 <h3 className="mt-16 font-display text-3xl font-black uppercase">
                   Facebook
                 </h3>
@@ -170,8 +170,8 @@ export default function Mission2022({ loaderData }: Route.ComponentProps) {
                 className={cn(
                   "relative aspect-[4/5] overflow-hidden rounded-3xl border border-white/10",
                   index % 2 === 0
-                    ? "bg-[linear-gradient(155deg,#2a1915,#11100f)]"
-                    : "bg-[linear-gradient(155deg,#15302b,#11100f)]",
+                    ? "bg-[linear-gradient(155deg,#2a1915,#545156)]"
+                    : "bg-[linear-gradient(155deg,#15302b,#545156)]",
                 )}
               >
                 <div className="grain absolute inset-0 opacity-40" />
@@ -185,7 +185,7 @@ export default function Mission2022({ loaderData }: Route.ComponentProps) {
             ))}
           </div>
 
-          <div className="mt-16 rounded-[2rem] bg-[#e94235] p-8 md:p-10">
+          <div className="mt-16 rounded-[2rem] bg-[#df3946] p-8 md:p-10">
             <h2 className="font-display text-5xl font-black uppercase">
               {copy.current.title}
             </h2>
