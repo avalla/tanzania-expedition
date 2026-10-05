@@ -8,6 +8,7 @@ import {
   MapPin,
   Music2,
   Shirt,
+  Youtube,
 } from "lucide-react";
 import { Link, redirect } from "react-router";
 
