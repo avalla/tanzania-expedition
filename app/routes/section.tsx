@@ -74,7 +74,7 @@ function PageIntro({
 }) {
   return (
     <div className="max-w-4xl">
-      <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#f5b73b]">
+      <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#fab937]">
         {eyebrow}
       </p>
       <h1 className="text-balance mt-5 font-display text-6xl font-black uppercase leading-[0.88] md:text-8xl lg:text-9xl">
@@ -94,7 +94,7 @@ function LongCopy({
 }) {
   return (
     <div className="grid gap-10 lg:grid-cols-[.75fr_1.25fr]">
-      <h2 className="text-balance font-display text-5xl font-black uppercase leading-[0.92] text-[#f5b73b] md:text-7xl">
+      <h2 className="text-balance font-display text-5xl font-black uppercase leading-[0.92] text-[#fab937] md:text-7xl">
         {title}
       </h2>
       <div className="space-y-6">
@@ -138,8 +138,8 @@ export default function SectionPage({ loaderData }: Route.ComponentProps) {
   return (
     <SiteShell lang={lang} currentPage={page}>
       <main className="pt-20">
-        <section className="relative overflow-hidden border-b border-white/10 bg-[radial-gradient(circle_at_85%_10%,rgba(245,183,59,.18),transparent_18%),linear-gradient(145deg,#1d1512,#11100f_60%)]">
-          <div className="expedition-circuit absolute inset-y-0 right-0 hidden w-[38%] opacity-20 lg:block" />
+        <section className="relative overflow-hidden border-b border-white/10 bg-[radial-gradient(circle_at_85%_10%,rgba(245,183,59,.18),transparent_18%),linear-gradient(145deg,#1d1512,#545156_60%)]">
+          <div className="communique-slashes absolute -right-20 top-8 h-52 w-80 opacity-25" />
           <div className="grain absolute inset-0 opacity-25" />
           <div className="relative mx-auto max-w-7xl px-5 py-24 lg:px-8 lg:py-32">
             {page === "project" && (
@@ -200,7 +200,7 @@ export default function SectionPage({ loaderData }: Route.ComponentProps) {
                   key={title}
                   className="rounded-3xl border border-white/10 bg-white/[0.035] p-7"
                 >
-                  <Icon className="size-7 text-[#f5b73b]" />
+                  <Icon className="size-7 text-[#fab937]" />
                   <h2 className="mt-6 font-display text-4xl font-black uppercase">
                     {title}
                   </h2>
@@ -209,7 +209,7 @@ export default function SectionPage({ loaderData }: Route.ComponentProps) {
               ))}
             </div>
 
-            <div className="expedition-pattern mt-10 overflow-hidden rounded-[2rem] border border-[#149784]/25 bg-[#149784]/8 p-8 lg:p-10">
+            <div className="expedition-pattern mt-10 overflow-hidden rounded-[2rem] border border-[#00a875]/25 bg-[#00a875]/8 p-8 lg:p-10">
               <p className="relative max-w-3xl text-lg leading-8 text-white/72">
                 {copy.promise.body}
               </p>
@@ -221,10 +221,10 @@ export default function SectionPage({ loaderData }: Route.ComponentProps) {
           <section className="mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-28">
             <Link
               to={hrefFor(lang, "missions", "2022")}
-              className="group block rounded-[2rem] border border-white/10 bg-white/[0.035] p-8 transition hover:border-[#f5b73b]/30 lg:p-10"
+              className="group block rounded-[2rem] border border-white/10 bg-white/[0.035] p-8 transition hover:border-[#fab937]/30 lg:p-10"
             >
               <div className="grid gap-10 md:grid-cols-[.4fr_1fr] md:items-end">
-                <div className="font-display text-[8rem] font-black leading-none text-[#f5b73b]">
+                <div className="font-display text-[8rem] font-black leading-none text-[#fab937]">
                   22
                 </div>
                 <div>
@@ -250,7 +250,7 @@ export default function SectionPage({ loaderData }: Route.ComponentProps) {
         {page === "stories" && (
           <section className="mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-28">
             <div className="grid gap-10 lg:grid-cols-[.8fr_1.2fr]">
-              <h2 className="text-balance font-display text-5xl font-black uppercase leading-[0.92] text-[#f5b73b] md:text-7xl">
+              <h2 className="text-balance font-display text-5xl font-black uppercase leading-[0.92] text-[#fab937] md:text-7xl">
                 {editorial.socialTitle}
               </h2>
               <p className="text-lg leading-8 text-white/64">
@@ -263,9 +263,9 @@ export default function SectionPage({ loaderData }: Route.ComponentProps) {
                 href={INSTAGRAM_URL}
                 target="_blank"
                 rel="noreferrer"
-                className="rounded-[2rem] border border-[#e94235]/30 bg-[#2a1816] p-8"
+                className="rounded-[2rem] border border-[#df3946]/30 bg-[#df3946] p-8"
               >
-                <Instagram className="size-8 text-[#f5b73b]" />
+                <Instagram className="size-8 text-[#fab937]" />
                 <h2 className="mt-20 font-display text-5xl font-black uppercase">
                   Instagram
                 </h2>
@@ -278,9 +278,9 @@ export default function SectionPage({ loaderData }: Route.ComponentProps) {
                 href={FACEBOOK_URL}
                 target="_blank"
                 rel="noreferrer"
-                className="rounded-[2rem] border border-[#149784]/30 bg-[#142522] p-8"
+                className="rounded-[2rem] border border-[#00a875]/30 bg-[#00a875] p-8"
               >
-                <Facebook className="size-8 text-[#f5b73b]" />
+                <Facebook className="size-8 text-[#fab937]" />
                 <h2 className="mt-20 font-display text-5xl font-black uppercase">
                   Facebook
                 </h2>
@@ -293,9 +293,9 @@ export default function SectionPage({ loaderData }: Route.ComponentProps) {
                 href={YOUTUBE_URL}
                 target="_blank"
                 rel="noreferrer"
-                className="rounded-[2rem] border border-[#f5b73b]/30 bg-[#2d240e] p-8"
+                className="rounded-[2rem] border border-[#fab937]/30 bg-[#15466c] p-8"
               >
-                <Youtube className="size-8 text-[#e94235]" />
+                <Youtube className="size-8 text-[#df3946]" />
                 <h2 className="mt-20 font-display text-5xl font-black uppercase">
                   YouTube
                 </h2>
@@ -329,8 +329,8 @@ export default function SectionPage({ loaderData }: Route.ComponentProps) {
             <div className="expedition-party-grid absolute inset-0 opacity-15" />
             <div className="relative mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-28">
               <div className="grid gap-5 md:grid-cols-2">
-                <div className="rounded-[2rem] bg-[#e94235] p-8 text-white">
-                  <Music2 className="size-8 text-[#f5b73b]" />
+                <div className="rounded-[2rem] bg-[#df3946] p-8 text-white">
+                  <Music2 className="size-8 text-[#fab937]" />
                   <h2 className="mt-16 font-display text-5xl font-black uppercase">
                     Benefit parties
                   </h2>
@@ -340,7 +340,7 @@ export default function SectionPage({ loaderData }: Route.ComponentProps) {
                 </div>
 
                 <div className="rounded-[2rem] border border-white/10 bg-white/[0.035] p-8">
-                  <CalendarDays className="size-8 text-[#f5b73b]" />
+                  <CalendarDays className="size-8 text-[#fab937]" />
                   <h2 className="mt-16 font-display text-5xl font-black uppercase">
                     Coming soon
                   </h2>
@@ -360,7 +360,7 @@ export default function SectionPage({ loaderData }: Route.ComponentProps) {
 
             <div className="mt-16 grid gap-8 lg:grid-cols-[1fr_.8fr]">
               <div className="rounded-[2rem] border border-white/10 p-8 lg:p-10">
-                <h2 className="font-display text-4xl font-black uppercase text-[#149784]">
+                <h2 className="font-display text-4xl font-black uppercase text-[#00a875]">
                   {editorial.restartTitle}
                 </h2>
                 <div className="mt-5 space-y-5">
@@ -375,8 +375,8 @@ export default function SectionPage({ loaderData }: Route.ComponentProps) {
                 </div>
               </div>
 
-              <aside className="rounded-[2rem] bg-[#f5eddd] p-8 text-[#171411] lg:p-10">
-                <p className="text-xs font-extrabold uppercase tracking-[0.22em] text-[#e94235]">
+              <aside className="rounded-[2rem] bg-[#efe6d1] p-8 text-[#504e53] lg:p-10">
+                <p className="text-xs font-extrabold uppercase tracking-[0.22em] text-[#df3946]">
                   2026
                 </p>
                 <p className="mt-5 leading-7 text-black/65">
@@ -395,7 +395,7 @@ export default function SectionPage({ loaderData }: Route.ComponentProps) {
                   key={label}
                   className="rounded-3xl border border-white/10 bg-white/[0.035] p-7"
                 >
-                  <Icon className="size-7 text-[#149784]" />
+                  <Icon className="size-7 text-[#00a875]" />
                   <h2 className="mt-6 font-display text-4xl font-black uppercase">
                     {label}
                   </h2>
@@ -403,7 +403,7 @@ export default function SectionPage({ loaderData }: Route.ComponentProps) {
               ))}
             </div>
 
-            <div className="mt-10 rounded-[2rem] bg-[#f5b73b] p-8 text-[#171411] lg:p-10">
+            <div className="mt-10 rounded-[2rem] bg-[#fab937] p-8 text-[#504e53] lg:p-10">
               <p className="text-xs font-extrabold uppercase tracking-[0.22em] text-[#9f281f]">
                 {editorial.donateEyebrow}
               </p>
@@ -416,8 +416,8 @@ export default function SectionPage({ loaderData }: Route.ComponentProps) {
             </div>
 
             <div className="mt-5 grid gap-5 lg:grid-cols-[1fr_300px]">
-              <div className="rounded-[2rem] bg-[#f5eddd] p-8 text-[#171411] lg:p-10">
-              <p className="text-xs font-extrabold uppercase tracking-[0.22em] text-[#e94235]">
+              <div className="rounded-[2rem] bg-[#efe6d1] p-8 text-[#504e53] lg:p-10">
+              <p className="text-xs font-extrabold uppercase tracking-[0.22em] text-[#df3946]">
                 {copy.support.donationTitle}
               </p>
               <div className="mt-7 grid gap-8 md:grid-cols-2">
@@ -453,13 +453,13 @@ export default function SectionPage({ loaderData }: Route.ComponentProps) {
               </div>
             </div>
 
-              <aside className="rounded-[2rem] border border-[#f5b73b]/30 bg-[#11100f] p-6 text-center">
+              <aside className="rounded-[2rem] border border-[#fab937]/30 bg-[#545156] p-6 text-center">
                 <img
                   src="/media/qr-donation.webp"
                   alt="QR code Tanzania Expedition"
                   className="mx-auto w-full max-w-[240px] rounded-2xl"
                 />
-                <p className="mt-5 text-xs font-bold uppercase tracking-[0.18em] text-[#f5b73b]">
+                <p className="mt-5 text-xs font-bold uppercase tracking-[0.18em] text-[#fab937]">
                   QR · Tanzania Expedition
                 </p>
               </aside>
