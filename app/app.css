@@ -8,18 +8,23 @@
 :root {
   color-scheme: dark;
   font-synthesis: none;
+  --expedition-red: #e94235;
+  --expedition-yellow: #f5b73b;
+  --expedition-green: #149784;
+  --expedition-black: #11100f;
+  --expedition-ivory: #f5eddd;
 }
 
 html {
   scroll-behavior: smooth;
-  background: #11100f;
+  background: var(--expedition-black);
 }
 
 body {
   margin: 0;
   min-width: 320px;
-  background: #11100f;
-  color: #f5eddd;
+  background: var(--expedition-black);
+  color: var(--expedition-ivory);
   font-family: var(--font-sans);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -36,7 +41,7 @@ summary::-webkit-details-marker {
 }
 
 ::selection {
-  background: #f5b73b;
+  background: var(--expedition-yellow);
   color: #171411;
 }
 
@@ -54,4 +59,71 @@ summary::-webkit-details-marker {
 
 .text-balance {
   text-wrap: balance;
+}
+
+.expedition-pattern {
+  background-image:
+    linear-gradient(135deg, transparent 0 44%, rgba(233, 66, 53, 0.7) 44% 48%, transparent 48% 100%),
+    linear-gradient(45deg, transparent 0 44%, rgba(245, 183, 59, 0.65) 44% 48%, transparent 48% 100%),
+    linear-gradient(90deg, rgba(20, 151, 132, 0.32) 1px, transparent 1px);
+  background-size: 70px 70px, 70px 70px, 35px 35px;
+}
+
+.expedition-party-grid {
+  background-image:
+    radial-gradient(circle at 10% 15%, rgba(245, 183, 59, 0.72) 0 2px, transparent 2px),
+    radial-gradient(circle at 78% 28%, rgba(20, 151, 132, 0.55) 0 2px, transparent 2px),
+    linear-gradient(135deg, transparent 0 47%, rgba(17, 16, 15, 0.65) 47% 50%, transparent 50% 100%);
+  background-size: 36px 36px, 52px 52px, 72px 72px;
+}
+
+.expedition-circuit {
+  background-image:
+    linear-gradient(90deg, transparent 0 18%, rgba(233, 66, 53, 0.75) 18% 19%, transparent 19% 43%, rgba(245, 183, 59, 0.78) 43% 44%, transparent 44% 72%, rgba(20, 151, 132, 0.75) 72% 73%, transparent 73%),
+    linear-gradient(0deg, transparent 0 27%, rgba(233, 66, 53, 0.55) 27% 28%, transparent 28% 61%, rgba(20, 151, 132, 0.55) 61% 62%, transparent 62%);
+  background-size: 130px 86px, 130px 86px;
+  mask-image: linear-gradient(90deg, transparent, black 28%, black 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent, black 28%, black 100%);
+}
+
+.expedition-circuit::before,
+.expedition-circuit::after {
+  content: "";
+  position: absolute;
+  border-radius: 999px;
+  background: var(--expedition-yellow);
+  box-shadow:
+    66px 42px 0 var(--expedition-red),
+    134px 104px 0 var(--expedition-green),
+    212px 24px 0 var(--expedition-yellow),
+    284px 146px 0 var(--expedition-red);
+}
+
+.expedition-circuit::before {
+  width: 5px;
+  height: 5px;
+  top: 15%;
+  left: 18%;
+}
+
+.expedition-circuit::after {
+  width: 4px;
+  height: 4px;
+  top: 58%;
+  left: 34%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .expedition-circuit {
+    animation: expedition-shift 18s linear infinite alternate;
+  }
+}
+
+@keyframes expedition-shift {
+  from {
+    background-position: 0 0, 0 0;
+  }
+  to {
+    background-position: 35px 18px, -20px 14px;
+  }
 }
