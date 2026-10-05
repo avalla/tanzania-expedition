@@ -11,6 +11,7 @@ import {
   Sparkles,
   Users,
   Waves,
+  Youtube,
 } from "lucide-react";
 import { Link, redirect } from "react-router";
 
