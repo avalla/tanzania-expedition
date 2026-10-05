@@ -1,4 +1,4 @@
-import { Facebook, Instagram, Menu } from "lucide-react";
+import { Facebook, Instagram, Menu, Youtube } from "lucide-react";
 import { Link } from "react-router";
 
 import {
@@ -154,6 +154,15 @@ export function SiteShell({
               aria-label={copy.common.facebook}
             >
               <Facebook className="size-5" />
+            </a>
+            <a
+              href={YOUTUBE_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="grid size-11 place-items-center rounded-full border border-white/12 text-white/70 transition hover:border-[#f5b73b]/60 hover:text-white"
+              aria-label="YouTube"
+            >
+              <Youtube className="size-5" />
             </a>
           </div>
         </div>
