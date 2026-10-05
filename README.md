@@ -5,13 +5,15 @@ Prima versione del sito ufficiale Tanzania Expedition.
 ## Stack
 
 - React Router Framework Mode con SSR
-- React 19
-- TypeScript
+- React 19 + TypeScript
 - Tailwind CSS 4
 - componenti UI in stile shadcn/ui
-- Cloudflare Workers + Vite plugin
+- Cloudflare Workers + Cloudflare Vite plugin
 - Bun
 - GitHub Actions per CI e deploy
+
+Non è un monorepo: per questa prima versione aggiungerebbe struttura senza
+risolvere un problema reale.
 
 ## Sviluppo locale
 
@@ -20,21 +22,19 @@ bun install
 bun run dev
 ```
 
-L'app sarà disponibile di default su `http://localhost:5173`.
-
-## Comandi
+Comandi principali:
 
 ```bash
-bun run dev
 bun run typecheck
 bun run build
 bun run check
 bun run deploy
 ```
 
-## Cloudflare
+## Cloudflare / Wrangler
 
-Il progetto usa `wrangler.jsonc` come source of truth del Worker.
+`wrangler.jsonc` è la source of truth del Worker, che si chiama
+`tanzania-expedition`.
 
 Per autenticarti in locale:
 
@@ -42,60 +42,102 @@ Per autenticarti in locale:
 bunx wrangler login
 ```
 
-Per il deploy manuale:
+Per verificare la configurazione senza pubblicare:
 
 ```bash
-bun run deploy
+bunx wrangler deploy --dry-run
 ```
 
-### GitHub Actions
+## CI e deploy
 
-Il workflow `.github/workflows/ci.yml` esegue typecheck e build su push e pull request.
+Il workflow `.github/workflows/ci.yml` esegue:
 
-Il workflow `.github/workflows/deploy.yml` pubblica su Cloudflare quando viene effettuato un push su `main`, dopo i controlli.
+1. installazione con Bun;
+2. typecheck;
+3. build SSR;
+4. dry-run Wrangler;
+5. deploy su Cloudflare solo dopo il quality gate.
 
-Configurare nel repository GitHub:
+Il deploy è inizialmente disabilitato tramite una repository variable, così la
+prima PR può essere validata senza produrre il tradizionale rituale umano del
+"deploy rosso perché mancavano i secrets".
 
-**Settings → Secrets and variables → Actions → Secrets**
+### Secrets GitHub richiesti
+
+In **Settings → Secrets and variables → Actions → Secrets** aggiungere:
 
 - `CLOUDFLARE_API_TOKEN`
 - `CLOUDFLARE_ACCOUNT_ID`
 
-Il token Cloudflare deve essere limitato all'account interessato e avere i permessi necessari per modificare/deployare Workers.
+Poi in **Settings → Secrets and variables → Actions → Variables** aggiungere:
+
+- `CLOUDFLARE_DEPLOY_ENABLED=true`
+
+A quel punto un push su `main` effettua automaticamente il deploy. È anche
+possibile usare **Actions → CI and Deploy → Run workflow**.
+
+Il token Cloudflare deve essere dedicato al deploy e limitato all'account
+necessario, con permessi di modifica dei Workers.
+
+Non servono altre chiavi runtime in questa prima versione.
+
+## Dominio
+
+Il primo deploy può usare il sottodominio `workers.dev` di Cloudflare.
+Il dominio definitivo si collega da Cloudflare, nelle impostazioni del Worker,
+alla sezione **Domains & Routes**.
+
+Quando il dominio finale è noto vanno aggiunti canonical e hreflang assoluti.
 
 ## Multilingua
 
-La prima versione supporta:
+- Italiano: `/it`
+- English: `/en`
+- Español: `/es`
+- Français: `/fr`
 
-- Italiano `/it`
-- English `/en`
-- Español `/es`
-- Français `/fr`
+Gli slug principali sono localizzati, ad esempio:
+
+- `/it/progetto`
+- `/en/project`
+- `/es/proyecto`
+- `/fr/projet`
 
 La root `/` reindirizza a `/it`.
 
-## Contenuti
+## SEO
 
-I testi derivano dal comunicato Tanzania Expedition 2026. La missione 2022 è documentata, mentre foto e video social vengono progressivamente catalogati: il sito evita di inventare date, risultati o media non ancora verificati.
+La prima versione include:
 
-Social ufficiali:
+- SSR;
+- title e description per pagina/lingua;
+- Open Graph di base;
+- `robots.txt`;
+- `sitemap.xml` generata dinamicamente;
+- URL localizzati;
+- HTML semantico e responsive.
+
+Da completare con il dominio e i media definitivi:
+
+- canonical;
+- hreflang assoluti;
+- immagine Open Graph;
+- JSON-LD definitivo per progetto ed eventi.
+
+## Contenuti e media
+
+I testi sono basati sul comunicato Tanzania Expedition 2026.
+
+La missione 2022 è documentata nei materiali forniti. Gli archivi social
+ufficiali sono linkati, ma i singoli post Meta non sono stati usati come fonte
+automatica perché non risultano indicizzati in modo affidabile.
+
+Per questo gli slot fotografici della missione 2022 sono predisposti ma non
+mostrano immagini inventate o attribuite senza verifica.
+
+Vedi `docs/content-roadmap.md`.
+
+## Social
 
 - Instagram: https://www.instagram.com/drops.in.the.ocean
 - Facebook: https://www.facebook.com/profile.php?id=61589198731985
-
-## Asset e media
-
-Gli asset della missione vanno aggiunti in `public/media/` con formati ottimizzati per il web (AVIF/WebP per immagini, MP4/WebM o provider video dedicato per filmati).
-
-Per ogni media si consiglia di conservare nel modello contenuti:
-
-- anno
-- luogo
-- missione
-- didascalia
-- autore/provenienza
-- link al post social originale, se presente
-
-## Stato
-
-Questa è una prima bozza visuale e strutturale. È già predisposta per SEO multilingua, SSR e deploy su Cloudflare.

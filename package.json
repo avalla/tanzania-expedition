@@ -1,0 +1,37 @@
+{
+  "name": "tanzania-expedition",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "react-router dev",
+    "build": "react-router build",
+    "typegen": "react-router typegen",
+    "typecheck": "react-router typegen && tsc -b",
+    "check": "react-router typegen && tsc -b && react-router build && wrangler deploy --dry-run",
+    "deploy": "wrangler deploy",
+    "preview": "bun run build && vite preview"
+  },
+  "dependencies": {
+    "class-variance-authority": "0.7.1",
+    "clsx": "2.1.1",
+    "isbot": "5.1.32",
+    "lucide-react": "^0.468.0",
+    "react": "19.2.1",
+    "react-dom": "19.2.1",
+    "react-router": "7.9.6",
+    "tailwind-merge": "^3.3.1"
+  },
+  "devDependencies": {
+    "@cloudflare/vite-plugin": "1.52.1",
+    "@react-router/dev": "7.9.6",
+    "@tailwindcss/vite": "4.1.17",
+    "@types/node": "24.10.1",
+    "@types/react": "19.2.7",
+    "@types/react-dom": "19.2.3",
+    "tailwindcss": "4.1.17",
+    "typescript": "5.9.3",
+    "vite": "^7.0.0",
+    "vite-tsconfig-paths": "5.1.4",
+    "wrangler": "4.136.1"
+  }
+}

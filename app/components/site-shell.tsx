@@ -1,0 +1,163 @@
+import { Facebook, Instagram, Menu } from "lucide-react";
+import { Link } from "react-router";
+
+import {
+  getCopy,
+  hrefFor,
+  LANGUAGES,
+  PAGE_KEYS,
+  type Lang,
+  type PageKey,
+} from "~/lib/i18n";
+import { cn } from "~/lib/utils";
+
+export const INSTAGRAM_URL = "https://www.instagram.com/drops.in.the.ocean";
+export const FACEBOOK_URL =
+  "https://www.facebook.com/profile.php?id=61589198731985";
+
+export function SiteShell({
+  lang,
+  currentPage,
+  detail,
+  children,
+}: {
+  lang: Lang;
+  currentPage?: PageKey;
+  detail?: string;
+  children: React.ReactNode;
+}) {
+  const copy = getCopy(lang);
+
+  return (
+    <div className="min-h-screen bg-[#11100f] text-[#f5eddd]">
+      <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#11100f]/80 backdrop-blur-xl">
+        <div className="mx-auto flex h-20 max-w-7xl items-center gap-5 px-5 lg:px-8">
+          <Link
+            to={hrefFor(lang)}
+            className="mr-auto flex items-center gap-3"
+            aria-label="Tanzania Expedition"
+          >
+            <span className="relative grid size-10 place-items-center overflow-hidden rounded-full border border-[#f5b73b]/45 bg-[#1a1714]">
+              <span className="absolute size-5 rounded-full bg-[#f5b73b]" />
+              <span className="absolute bottom-1 h-3 w-12 -rotate-6 bg-[#149784]" />
+            </span>
+            <span className="leading-none">
+              <span className="block font-display text-lg font-extrabold uppercase tracking-[0.12em] text-white">
+                Tanzania
+              </span>
+              <span className="block text-[10px] font-bold uppercase tracking-[0.32em] text-[#f5b73b]">
+                Expedition
+              </span>
+            </span>
+          </Link>
+
+          <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">
+            {PAGE_KEYS.map((page) => (
+              <Link
+                key={page}
+                to={hrefFor(lang, page)}
+                className={cn(
+                  "rounded-full px-3 py-2 text-sm font-medium text-white/70 transition hover:bg-white/6 hover:text-white",
+                  currentPage === page && "bg-white/7 text-white",
+                  page === "support" &&
+                    "ml-2 bg-[#e94235] px-4 text-white hover:bg-[#f05245]",
+                )}
+              >
+                {copy.nav[page]}
+              </Link>
+            ))}
+          </nav>
+
+          <details className="relative hidden sm:block">
+            <summary className="cursor-pointer list-none rounded-full border border-white/15 px-3 py-2 text-xs font-bold uppercase tracking-[0.14em] text-white/80 hover:bg-white/6">
+              {lang.toUpperCase()}
+            </summary>
+            <div className="absolute right-0 mt-3 w-40 rounded-2xl border border-white/10 bg-[#191715] p-2 shadow-2xl">
+              {LANGUAGES.map((target) => (
+                <Link
+                  key={target}
+                  to={hrefFor(target, currentPage, detail)}
+                  className={cn(
+                    "block rounded-xl px-3 py-2 text-sm text-white/70 hover:bg-white/7 hover:text-white",
+                    target === lang && "bg-white/7 text-white",
+                  )}
+                >
+                  {getCopy(target).localeName}
+                </Link>
+              ))}
+            </div>
+          </details>
+
+          <details className="relative lg:hidden">
+            <summary className="grid size-10 cursor-pointer list-none place-items-center rounded-full border border-white/15 text-white">
+              <Menu className="size-5" />
+              <span className="sr-only">{copy.common.menu}</span>
+            </summary>
+            <div className="absolute right-0 mt-3 w-72 rounded-3xl border border-white/10 bg-[#191715] p-3 shadow-2xl">
+              <nav className="grid gap-1">
+                {PAGE_KEYS.map((page) => (
+                  <Link
+                    key={page}
+                    to={hrefFor(lang, page)}
+                    className="rounded-2xl px-4 py-3 text-sm font-semibold text-white/80 hover:bg-white/7 hover:text-white"
+                  >
+                    {copy.nav[page]}
+                  </Link>
+                ))}
+              </nav>
+              <div className="mt-3 grid grid-cols-4 gap-1 border-t border-white/10 pt-3">
+                {LANGUAGES.map((target) => (
+                  <Link
+                    key={target}
+                    to={hrefFor(target, currentPage, detail)}
+                    className={cn(
+                      "rounded-xl px-2 py-2 text-center text-xs font-bold uppercase text-white/60 hover:bg-white/7",
+                      target === lang && "bg-white/7 text-white",
+                    )}
+                  >
+                    {target}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </details>
+        </div>
+      </header>
+
+      {children}
+
+      <footer className="border-t border-white/10 bg-[#0d0c0b]">
+        <div className="mx-auto grid max-w-7xl gap-10 px-5 py-12 md:grid-cols-[1.2fr_.8fr] lg:px-8">
+          <div>
+            <div className="font-display text-2xl font-black uppercase tracking-[0.08em]">
+              Tanzania Expedition
+            </div>
+            <p className="mt-3 max-w-xl text-sm leading-6 text-white/55">
+              {copy.common.sourceNote}
+            </p>
+          </div>
+          <div className="flex items-start gap-3 md:justify-end">
+            <a
+              href={INSTAGRAM_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="grid size-11 place-items-center rounded-full border border-white/12 text-white/70 transition hover:border-[#e94235]/50 hover:text-white"
+              aria-label={copy.common.instagram}
+            >
+              <Instagram className="size-5" />
+            </a>
+            <a
+              href={FACEBOOK_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="grid size-11 place-items-center rounded-full border border-white/12 text-white/70 transition hover:border-[#149784]/50 hover:text-white"
+              aria-label={copy.common.facebook}
+            >
+              <Facebook className="size-5" />
+            </a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
