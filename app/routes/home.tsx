@@ -16,7 +16,6 @@ import {
 import { Link, redirect } from "react-router";
 
 import type { Route } from "./+types/home";
-import { SavannaBackdrop } from "~/components/savanna-backdrop";
 import {
   FACEBOOK_URL,
   INSTAGRAM_URL,
@@ -73,7 +72,7 @@ function EditorialBlock({
         <p
           className={cn(
             "text-xs font-extrabold uppercase tracking-[0.28em]",
-            light ? "text-[#e94235]" : "text-[#f5b73b]",
+            light ? "text-[#df3946]" : "text-[#fab937]",
           )}
         >
           {eyebrow}
@@ -81,7 +80,7 @@ function EditorialBlock({
         <h2
           className={cn(
             "text-balance mt-5 font-display text-5xl font-black uppercase leading-[0.9] md:text-7xl",
-            light ? "text-[#171411]" : "text-white",
+            light ? "text-[#504e53]" : "text-[#efe6d1]",
           )}
         >
           {title}
@@ -93,7 +92,7 @@ function EditorialBlock({
             key={paragraph}
             className={cn(
               "text-lg leading-8",
-              light ? "text-[#171411]/68" : "text-white/64",
+              light ? "text-[#504e53]/76" : "text-[#efe6d1]/78",
             )}
           >
             {paragraph}
@@ -112,21 +111,25 @@ export default function Home({ loaderData }: Route.ComponentProps) {
       Icon: Droplets,
       title: copy.promise.pillars[0][0],
       body: copy.promise.pillars[0][1],
+      accent: "#00a875",
     },
     {
       Icon: Sparkles,
       title: copy.promise.pillars[1][0],
       body: copy.promise.pillars[1][1],
+      accent: "#fab937",
     },
     {
       Icon: PackageOpen,
       title: copy.promise.pillars[2][0],
       body: copy.promise.pillars[2][1],
+      accent: "#df3946",
     },
     {
       Icon: Users,
       title: copy.promise.pillars[3][0],
       body: copy.promise.pillars[3][1],
+      accent: "#15466c",
     },
   ];
 
@@ -151,27 +154,27 @@ export default function Home({ loaderData }: Route.ComponentProps) {
   const documentary = {
     it: {
       eyebrow: "Documentario · Tanzania 2022",
-      title: "Guarda la missione attraverso le immagini.",
-      body: "Il documentario del 2022 raccoglie luoghi, incontri e momenti del progetto. È il modo più diretto per capire da dove nasce la promessa di tornare.",
-      cta: "Apri su YouTube",
+      title: "La spedizione del 2022, raccontata dalle immagini.",
+      body: "Il documentario raccoglie la missione svolta in Tanzania nel 2022: luoghi, incontri e momenti del progetto da cui è nata la promessa di tornare.",
+      cta: "Guarda su YouTube",
     },
     en: {
       eyebrow: "Documentary · Tanzania 2022",
-      title: "Watch the mission through its images.",
-      body: "The 2022 documentary brings together places, encounters and moments from the project. It is the most direct way to understand where the promise to return began.",
-      cta: "Open on YouTube",
+      title: "The 2022 expedition, told through images.",
+      body: "The documentary follows the 2022 mission in Tanzania: places, encounters and moments from the project that led to the promise to return.",
+      cta: "Watch on YouTube",
     },
     es: {
       eyebrow: "Documental · Tanzania 2022",
-      title: "Mira la misión a través de sus imágenes.",
-      body: "El documental de 2022 reúne lugares, encuentros y momentos del proyecto. Es la forma más directa de entender dónde nació la promesa de volver.",
-      cta: "Abrir en YouTube",
+      title: "La expedición de 2022, contada a través de imágenes.",
+      body: "El documental recoge la misión realizada en Tanzania en 2022: lugares, encuentros y momentos del proyecto del que nació la promesa de volver.",
+      cta: "Ver en YouTube",
     },
     fr: {
       eyebrow: "Documentaire · Tanzanie 2022",
-      title: "Découvrez la mission à travers les images.",
-      body: "Le documentaire de 2022 rassemble lieux, rencontres et moments du projet. C'est la manière la plus directe de comprendre d'où vient la promesse de revenir.",
-      cta: "Ouvrir sur YouTube",
+      title: "L'expédition de 2022 racontée en images.",
+      body: "Le documentaire retrace la mission menée en Tanzanie en 2022 : lieux, rencontres et moments du projet à l'origine de la promesse de revenir.",
+      cta: "Voir sur YouTube",
     },
   }[lang];
 
@@ -185,75 +188,74 @@ export default function Home({ loaderData }: Route.ComponentProps) {
   return (
     <SiteShell lang={lang}>
       <main>
-        <div
-          aria-hidden="true"
-          className="pointer-events-none fixed bottom-0 right-0 z-30 hidden w-[250px] opacity-[0.16] 2xl:block [mask-image:linear-gradient(to_top,black_60%,transparent_100%)]"
-        >
-          <img
-            src="/media/flyer-figure.webp"
-            alt=""
-            className="h-auto w-full"
-          />
-        </div>
+        <section className="relative flex min-h-[94svh] overflow-hidden bg-[#545156] pt-20 text-[#efe6d1]">
+          <div className="absolute inset-x-0 top-20 h-3 bg-[#df3946]" />
+          <div className="communique-zigzag absolute right-[5%] top-32 hidden h-10 w-48 opacity-90 lg:block" />
+          <div className="absolute right-[9%] top-[23%] hidden size-20 rounded-full bg-[#fab937] lg:block" />
+          <div className="absolute bottom-0 left-0 right-0 h-8 bg-[#df3946]" />
 
-        <section className="relative flex min-h-[94svh] items-end overflow-hidden pt-20">
-          <SavannaBackdrop />
-          <div className="expedition-circuit absolute inset-y-0 right-0 hidden w-[34%] opacity-35 lg:block" />
-          <img
-            src="/media/flyer-celestial.webp"
-            alt=""
-            aria-hidden="true"
-            className="pointer-events-none absolute right-[12%] top-28 hidden w-80 opacity-75 xl:block"
-          />
-          <div className="absolute left-0 top-20 h-2 w-full bg-[linear-gradient(90deg,#e94235_0_24%,#f5b73b_24%_49%,#149784_49%_73%,#d33b2f_73%)] opacity-80" />
+          <div className="relative mx-auto grid w-full max-w-7xl gap-10 px-5 pb-20 pt-20 lg:grid-cols-[1.04fr_.96fr] lg:items-center lg:px-8 lg:pb-24">
+            <div className="relative z-10">
+              <img
+                src="/media/communique-logo.svg"
+                alt="Tanzania Expedition"
+                className="mb-10 w-[min(440px,80vw)]"
+              />
 
-          <div className="relative z-10 mx-auto w-full max-w-7xl px-5 pb-16 pt-28 lg:px-8 lg:pb-24">
-            <div className="max-w-5xl">
-              <p className="mb-5 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.25em] text-[#f5b73b]">
+              <p className="mb-5 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.24em] text-[#fab937]">
                 <MapPin className="size-4" />
                 {copy.hero.eyebrow}
               </p>
-              <h1 className="text-balance font-display text-[clamp(4.6rem,10.7vw,10rem)] font-black uppercase leading-[0.8] tracking-[-0.04em] text-white">
+
+              <h1 className="text-balance font-display text-[clamp(4.2rem,8vw,8rem)] font-black uppercase leading-[0.82] tracking-[-0.035em]">
                 <span className="block">{copy.hero.title.split(".")[0]}.</span>
-                <span className="mt-2 block text-[#f5b73b]">
+                <span className="mt-2 block text-[#fab937]">
                   {copy.hero.title.split(".").slice(1).join(".").trim()}
                 </span>
               </h1>
-              <p className="mt-8 max-w-2xl text-base leading-7 text-white/72 md:text-lg">
+
+              <p className="mt-8 max-w-2xl text-base leading-7 text-[#efe6d1]/82 md:text-lg">
                 {copy.hero.lead}
               </p>
+
               <div className="mt-9 flex flex-wrap gap-3">
                 <Link
                   to={hrefFor(lang, "support")}
-                  className={buttonVariants({ size: "lg" })}
+                  className="inline-flex min-h-12 items-center gap-2 rounded-full bg-[#df3946] px-7 py-3.5 font-bold text-white transition hover:-translate-y-0.5 hover:bg-[#eb4854]"
                 >
                   {copy.hero.primary}
                   <HeartHandshake className="size-5" />
                 </Link>
-                <Link
-                  to={hrefFor(lang, "missions", "2022")}
-                  className={buttonVariants({
-                    variant: "secondary",
-                    size: "lg",
-                  })}
+                <a
+                  href="#documentary"
+                  className="inline-flex min-h-12 items-center gap-2 rounded-full border border-[#efe6d1]/35 px-7 py-3.5 font-bold text-[#efe6d1] transition hover:bg-white/8"
                 >
-                  {copy.hero.secondary}
-                  <ArrowRight className="size-5" />
-                </Link>
+                  <Youtube className="size-5 text-[#fab937]" />
+                  {documentary.eyebrow}
+                </a>
               </div>
+
+              <a
+                href="#promise"
+                className="mt-14 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-[#efe6d1]/55 transition hover:text-[#efe6d1]"
+              >
+                <ArrowDown className="size-4" />
+                {copy.hero.scroll}
+              </a>
             </div>
 
-            <a
-              href="#promise"
-              className="mt-16 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-white/50 transition hover:text-white"
-            >
-              <ArrowDown className="size-4" />
-              {copy.hero.scroll}
-            </a>
+            <div className="relative mx-auto flex w-full max-w-[620px] items-end justify-center self-end lg:min-h-[620px]">
+              <img
+                src="/media/communique-camel.svg"
+                alt=""
+                aria-hidden="true"
+                className="w-full max-w-[620px] drop-shadow-[0_20px_28px_rgba(0,0,0,.16)]"
+              />
+            </div>
           </div>
         </section>
 
-        <section id="promise" className="bg-[#f5eddd] text-[#171411]">
+        <section id="promise" className="bg-[#efe6d1] text-[#504e53]">
           <div className="mx-auto max-w-7xl px-5 py-24 lg:px-8 lg:py-32">
             <EditorialBlock
               eyebrow={editorial.originEyebrow}
@@ -262,145 +264,69 @@ export default function Home({ loaderData }: Route.ComponentProps) {
               tone="light"
             />
 
-            <div className="mt-16 grid gap-px overflow-hidden rounded-[2rem] border border-black/10 bg-black/10 sm:grid-cols-2 lg:grid-cols-4">
-              {promiseCards.map(({ Icon, title, body }) => (
-                <article key={title} className="bg-[#fbf6eb] p-7">
-                  <Icon className="size-6 text-[#149784]" />
-                  <h3 className="mt-5 font-display text-3xl font-black uppercase">
+            <div className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {promiseCards.map(({ Icon, title, body, accent }) => (
+                <article
+                  key={title}
+                  className="relative overflow-hidden rounded-[1.6rem] border border-[#504e53]/12 bg-[#f8f1e2] p-7"
+                >
+                  <div
+                    className="absolute inset-x-0 top-0 h-2"
+                    style={{ backgroundColor: accent }}
+                  />
+                  <Icon className="size-7" style={{ color: accent }} />
+                  <h3 className="mt-6 font-display text-3xl font-black uppercase">
                     {title}
                   </h3>
-                  <p className="mt-2 text-sm leading-6 text-black/55">{body}</p>
+                  <p className="mt-2 text-sm leading-6 text-[#504e53]/68">
+                    {body}
+                  </p>
                 </article>
               ))}
             </div>
           </div>
         </section>
 
-        <section className="relative overflow-hidden border-y border-white/10 bg-[#11100f]">
-          <div className="expedition-pattern absolute inset-0 opacity-[0.16]" />
+        <section className="relative overflow-hidden bg-[#545156] text-[#efe6d1]">
+          <div className="communique-slashes absolute -right-16 top-10 h-52 w-72 opacity-30" />
           <div className="mx-auto max-w-7xl px-5 py-24 lg:px-8 lg:py-32">
             <EditorialBlock
               eyebrow={editorial.restartEyebrow}
               title={editorial.restartTitle}
               paragraphs={editorial.restartParagraphs}
             />
-
-            <blockquote className="mx-auto mt-20 max-w-5xl text-balance text-center font-display text-5xl font-black uppercase leading-[0.9] text-[#f5b73b] md:text-7xl">
+            <blockquote className="mx-auto mt-20 max-w-5xl text-balance text-center font-display text-5xl font-black uppercase leading-[0.92] text-[#fab937] md:text-7xl">
               “{editorial.bridgeQuote}”
             </blockquote>
           </div>
         </section>
 
-        <section className="relative overflow-hidden bg-[#1a1714]">
-          <div className="absolute -left-44 top-0 size-96 rounded-full bg-[#149784]/10 blur-3xl" />
-          <div className="mx-auto grid max-w-7xl gap-12 px-5 py-24 lg:grid-cols-[1.1fr_.9fr] lg:px-8 lg:py-32">
-            <div>
-              <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#149784]">
-                {copy.mission2022.eyebrow}
-              </p>
-              <h2 className="mt-4 font-display text-6xl font-black uppercase leading-none md:text-8xl">
-                {copy.mission2022.title}
-              </h2>
-              <p className="mt-6 max-w-2xl text-lg leading-8 text-white/62">
-                {copy.mission2022.body}
-              </p>
-              <Link
-                to={hrefFor(lang, "missions", "2022")}
-                className={cn(
-                  buttonVariants({ variant: "secondary" }),
-                  "mt-8",
-                )}
-              >
-                {copy.mission2022.cta}
-                <ArrowRight className="size-4" />
-              </Link>
-            </div>
-
-            <div className="relative min-h-[380px] overflow-hidden rounded-[2rem] border border-white/10 bg-[radial-gradient(circle_at_70%_20%,rgba(245,183,59,.28),transparent_22%),linear-gradient(145deg,#341b13,#11100f_66%)] p-7">
-              <div className="grain absolute inset-0 opacity-40" />
-              <div className="absolute inset-x-0 top-0 h-1 bg-[linear-gradient(90deg,#e94235,#f5b73b,#149784,#e94235)]" />
-              <div className="relative flex h-full min-h-[326px] flex-col justify-between">
-                <span className="w-fit rounded-full border border-white/15 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.2em] text-white/60">
-                  2022 · Tanzania
-                </span>
-                <div>
-                  <div className="font-display text-9xl font-black leading-none text-[#f5b73b]">
-                    22
-                  </div>
-                  <p className="mt-3 max-w-sm text-sm leading-6 text-white/60">
-                    {copy.mission2022.mediaBody}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="bg-[#f5eddd] text-[#171411]">
+        <section id="documentary" className="bg-[#efe6d1] text-[#504e53]">
           <div className="mx-auto max-w-7xl px-5 py-24 lg:px-8 lg:py-32">
-            <EditorialBlock
-              eyebrow={editorial.kimotorokEyebrow}
-              title={editorial.kimotorokTitle}
-              paragraphs={editorial.kimotorokParagraphs}
-              tone="light"
-            />
-
-            <div className="mt-14 grid gap-4 md:grid-cols-3">
-              {currentCards.map(({ Icon, title, body }) => (
-                <article
-                  key={title}
-                  className="rounded-[1.7rem] border border-black/10 bg-[#fffaf0] p-7"
-                >
-                  <div className="grid size-12 place-items-center rounded-2xl bg-[#f5b73b] text-[#171411]">
-                    <Icon className="size-6" />
-                  </div>
-                  <h3 className="mt-6 font-display text-3xl font-black uppercase">
-                    {title}
-                  </h3>
-                  <p className="mt-2 text-sm leading-6 text-black/55">{body}</p>
-                </article>
-              ))}
-            </div>
-
-            <div className="mt-12 flex flex-wrap gap-3">
-              <Link
-                to={hrefFor(lang, "project")}
-                className={buttonVariants()}
-              >
-                {copy.current.cta}
-                <ArrowRight className="size-4" />
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        <section className="relative overflow-hidden bg-[#11100f]">
-          <div className="expedition-pattern absolute inset-0 opacity-[0.12]" />
-          <div className="relative mx-auto max-w-7xl px-5 py-24 lg:px-8 lg:py-32">
-            <div className="grid gap-10 lg:grid-cols-[.72fr_1.28fr] lg:items-center">
+            <div className="grid gap-12 lg:grid-cols-[.74fr_1.26fr] lg:items-center">
               <div>
-                <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.25em] text-[#e94235]">
+                <p className="flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.25em] text-[#df3946]">
                   <Youtube className="size-4" />
                   {documentary.eyebrow}
                 </p>
                 <h2 className="text-balance mt-5 font-display text-6xl font-black uppercase leading-[0.9] md:text-8xl">
                   {documentary.title}
                 </h2>
-                <p className="mt-6 max-w-xl text-lg leading-8 text-white/62">
+                <p className="mt-6 max-w-xl text-lg leading-8 text-[#504e53]/72">
                   {documentary.body}
                 </p>
                 <a
                   href={YOUTUBE_URL}
                   target="_blank"
                   rel="noreferrer"
-                  className={cn(buttonVariants({ variant: "secondary" }), "mt-8")}
+                  className="mt-8 inline-flex min-h-12 items-center gap-2 rounded-full bg-[#df3946] px-7 py-3.5 font-bold text-white transition hover:-translate-y-0.5"
                 >
                   <Youtube className="size-5" />
                   {documentary.cta}
                 </a>
               </div>
 
-              <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-black shadow-2xl">
+              <div className="overflow-hidden rounded-[1.8rem] border-[6px] border-[#545156] bg-black shadow-xl">
                 <div className="aspect-video">
                   <iframe
                     className="h-full w-full"
@@ -416,26 +342,79 @@ export default function Home({ loaderData }: Route.ComponentProps) {
           </div>
         </section>
 
-        <section className="relative overflow-hidden bg-[#0f0e0d]">
-          <div className="expedition-circuit absolute inset-y-0 left-0 w-[38%] opacity-20" />
-          <div className="relative mx-auto max-w-7xl px-5 py-24 lg:px-8 lg:py-32">
+        <section className="bg-[#545156] text-[#efe6d1]">
+          <div className="mx-auto max-w-7xl px-5 py-24 lg:px-8 lg:py-32">
+            <div className="grid gap-12 lg:grid-cols-[.86fr_1.14fr]">
+              <div>
+                <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#00a875]">
+                  {editorial.kimotorokEyebrow}
+                </p>
+                <h2 className="text-balance mt-5 font-display text-6xl font-black uppercase leading-[0.9] md:text-8xl">
+                  {editorial.kimotorokTitle}
+                </h2>
+                <div className="mt-7 space-y-5">
+                  {editorial.kimotorokParagraphs.map((paragraph) => (
+                    <p key={paragraph} className="text-lg leading-8 text-[#efe6d1]/76">
+                      {paragraph}
+                    </p>
+                  ))}
+                </div>
+                <Link
+                  to={hrefFor(lang, "project")}
+                  className="mt-8 inline-flex items-center gap-2 font-bold text-[#fab937]"
+                >
+                  {copy.current.cta}
+                  <ArrowRight className="size-4" />
+                </Link>
+              </div>
+
+              <div className="grid gap-4">
+                {currentCards.map(({ Icon, title, body }, index) => (
+                  <article
+                    key={title}
+                    className="rounded-[1.6rem] border border-white/12 bg-white/[0.045] p-7"
+                  >
+                    <div className="flex items-start gap-5">
+                      <div
+                        className={cn(
+                          "grid size-12 shrink-0 place-items-center rounded-full",
+                          index === 0 && "bg-[#00a875] text-white",
+                          index === 1 && "bg-[#fab937] text-[#504e53]",
+                          index === 2 && "bg-[#df3946] text-white",
+                        )}
+                      >
+                        <Icon className="size-6" />
+                      </div>
+                      <div>
+                        <h3 className="font-display text-3xl font-black uppercase">
+                          {title}
+                        </h3>
+                        <p className="mt-2 text-sm leading-6 text-[#efe6d1]/62">
+                          {body}
+                        </p>
+                      </div>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="bg-[#efe6d1] text-[#504e53]">
+          <div className="mx-auto max-w-7xl px-5 py-24 lg:px-8 lg:py-32">
             <div className="grid gap-10 lg:grid-cols-[.8fr_1.2fr]">
               <div>
-                <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#149784]">
+                <p className="text-xs font-extrabold uppercase tracking-[0.25em] text-[#00a875]">
                   {copy.stories.eyebrow}
                 </p>
                 <h2 className="text-balance mt-4 font-display text-6xl font-black uppercase leading-[0.9] md:text-8xl">
                   {editorial.socialTitle}
                 </h2>
               </div>
-              <div>
-                <p className="text-lg leading-8 text-white/62">
-                  {editorial.socialBody}
-                </p>
-                <p className="mt-5 text-sm leading-6 text-white/42">
-                  {copy.mission2022.mediaBody}
-                </p>
-              </div>
+              <p className="text-lg leading-8 text-[#504e53]/72">
+                {editorial.socialBody}
+              </p>
             </div>
 
             <div className="mt-12 grid gap-5 md:grid-cols-3">
@@ -443,192 +422,122 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                 href={INSTAGRAM_URL}
                 target="_blank"
                 rel="noreferrer"
-                className="group relative min-h-[340px] overflow-hidden rounded-[2rem] border border-[#e94235]/25 bg-[linear-gradient(145deg,#3c1614,#151312)] p-8"
+                className="group rounded-[1.6rem] bg-[#df3946] p-8 text-white"
               >
-                <div className="grain absolute inset-0 opacity-35" />
-                <Instagram className="relative size-8 text-[#f5b73b]" />
-                <div className="relative mt-32">
-                  <p className="text-xs font-bold uppercase tracking-[0.2em] text-white/45">
-                    @drops.in.the.ocean
-                  </p>
-                  <h3 className="mt-3 font-display text-4xl font-black uppercase">
-                    {copy.stories.instagram}
-                  </h3>
-                  <ArrowRight className="mt-5 size-5 transition group-hover:translate-x-1" />
-                </div>
+                <Instagram className="size-8 text-[#fab937]" />
+                <h3 className="mt-20 font-display text-4xl font-black uppercase">
+                  Instagram
+                </h3>
+                <p className="mt-3 text-sm text-white/65">@drops.in.the.ocean</p>
               </a>
-
               <a
                 href={FACEBOOK_URL}
                 target="_blank"
                 rel="noreferrer"
-                className="group relative min-h-[340px] overflow-hidden rounded-[2rem] border border-[#149784]/25 bg-[linear-gradient(145deg,#0d332c,#111211)] p-8"
+                className="group rounded-[1.6rem] bg-[#00a875] p-8 text-white"
               >
-                <div className="grain absolute inset-0 opacity-35" />
-                <Facebook className="relative size-8 text-[#f5b73b]" />
-                <div className="relative mt-32">
-                  <p className="text-xs font-bold uppercase tracking-[0.2em] text-white/45">
-                    Tanzania Expedition
-                  </p>
-                  <h3 className="mt-3 font-display text-4xl font-black uppercase">
-                    {copy.stories.facebook}
-                  </h3>
-                  <ArrowRight className="mt-5 size-5 transition group-hover:translate-x-1" />
-                </div>
+                <Facebook className="size-8 text-[#fab937]" />
+                <h3 className="mt-20 font-display text-4xl font-black uppercase">
+                  Facebook
+                </h3>
+                <p className="mt-3 text-sm text-white/65">Tanzania Expedition</p>
               </a>
-
               <a
                 href={YOUTUBE_URL}
                 target="_blank"
                 rel="noreferrer"
-                className="group relative min-h-[340px] overflow-hidden rounded-[2rem] border border-[#f5b73b]/25 bg-[linear-gradient(145deg,#36270d,#11100f)] p-8"
+                className="group rounded-[1.6rem] bg-[#15466c] p-8 text-white"
               >
-                <div className="grain absolute inset-0 opacity-35" />
-                <Youtube className="relative size-8 text-[#e94235]" />
-                <div className="relative mt-32">
-                  <p className="text-xs font-bold uppercase tracking-[0.2em] text-white/45">
-                    Tanzania 2022
-                  </p>
-                  <h3 className="mt-3 font-display text-4xl font-black uppercase">
-                    YouTube
-                  </h3>
-                  <ArrowRight className="mt-5 size-5 transition group-hover:translate-x-1" />
-                </div>
+                <Youtube className="size-8 text-[#fab937]" />
+                <h3 className="mt-20 font-display text-4xl font-black uppercase">
+                  YouTube
+                </h3>
+                <p className="mt-3 text-sm text-white/65">Tanzania 2022</p>
               </a>
-            </div>
-
-            <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {["01", "02", "03", "04"].map((slot, index) => (
-                <div
-                  key={slot}
-                  className={cn(
-                    "relative aspect-[4/3] overflow-hidden rounded-3xl border border-dashed border-white/15",
-                    index % 2 === 0
-                      ? "bg-[linear-gradient(145deg,#281713,#10100f)]"
-                      : "bg-[linear-gradient(145deg,#102c27,#10100f)]",
-                  )}
-                >
-                  <div className="grain absolute inset-0 opacity-40" />
-                  <span className="absolute left-5 top-5 font-display text-4xl font-black text-white/18">
-                    {slot}
-                  </span>
-                  <span className="absolute bottom-5 left-5 right-5 text-xs font-bold uppercase tracking-[0.16em] text-white/40">
-                    {copy.stories.pending}
-                  </span>
-                </div>
-              ))}
             </div>
           </div>
         </section>
 
-        <section className="relative overflow-hidden bg-[#e94235] text-white">
-          <div className="expedition-party-grid absolute inset-0 opacity-25" />
-          <div className="relative mx-auto grid max-w-7xl gap-12 px-5 py-24 lg:grid-cols-[1fr_.82fr] lg:px-8 lg:py-28">
+        <section className="relative overflow-hidden bg-[#df3946] text-white">
+          <div className="communique-zigzag absolute right-8 top-8 h-12 w-56 opacity-45" />
+          <div className="mx-auto grid max-w-7xl gap-12 px-5 py-24 lg:grid-cols-[1fr_.82fr] lg:px-8 lg:py-28">
             <div>
-              <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.25em] text-[#f5b73b]">
+              <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.25em] text-[#fab937]">
                 <Music2 className="size-4" />
                 {copy.events.eyebrow}
               </p>
               <h2 className="text-balance mt-4 font-display text-6xl font-black uppercase leading-[0.88] md:text-8xl">
                 {copy.events.title}
               </h2>
-              <p className="mt-6 max-w-2xl text-lg leading-8 text-white/84">
+              <p className="mt-6 max-w-2xl text-lg leading-8 text-white/85">
                 {editorial.eventsLongBody}
               </p>
               <Link
                 to={hrefFor(lang, "events")}
-                className={cn(
-                  buttonVariants({ variant: "light" }),
-                  "mt-8",
-                )}
+                className="mt-8 inline-flex min-h-12 items-center gap-2 rounded-full bg-[#efe6d1] px-7 py-3.5 font-bold text-[#504e53]"
               >
                 {copy.events.cta}
                 <ArrowRight className="size-4" />
               </Link>
             </div>
-
-            <div className="flex items-end">
-              <div className="w-full rounded-[2rem] border border-white/25 bg-[#161311]/92 p-8 shadow-2xl">
-                <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#f5b73b]">
-                  Benefit calendar
-                </span>
-                <div className="mt-8 space-y-4">
-                  {["Italy", "Europe", "Tanzania Expedition"].map((item) => (
-                    <div
-                      key={item}
-                      className="flex items-center justify-between border-b border-white/10 pb-4"
-                    >
-                      <span className="font-display text-2xl font-black uppercase">
-                        {item}
-                      </span>
-                      <span className="text-xs font-bold uppercase tracking-[0.14em] text-white/45">
-                        coming soon
-                      </span>
-                    </div>
-                  ))}
-                </div>
-                <p className="mt-6 text-sm text-white/50">
-                  {copy.events.empty}
-                </p>
+            <div className="self-end rounded-[1.6rem] bg-[#545156] p-8">
+              <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#fab937]">
+                Benefit calendar
+              </span>
+              <div className="mt-8 space-y-4">
+                {["Italy", "Europe", "Tanzania Expedition"].map((item) => (
+                  <div
+                    key={item}
+                    className="flex items-center justify-between border-b border-white/12 pb-4"
+                  >
+                    <span className="font-display text-2xl font-black uppercase">
+                      {item}
+                    </span>
+                    <span className="text-xs font-bold uppercase tracking-[0.14em] text-white/50">
+                      coming soon
+                    </span>
+                  </div>
+                ))}
               </div>
+              <p className="mt-6 text-sm text-white/55">{copy.events.empty}</p>
             </div>
           </div>
         </section>
 
-        <section className="relative overflow-hidden bg-[#f5b73b] text-[#171411]">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(233,66,53,.24),transparent_21%),radial-gradient(circle_at_85%_75%,rgba(20,151,132,.28),transparent_24%)]" />
-          <div className="relative mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-24">
-            <div className="grid gap-10 lg:grid-cols-[1fr_260px] lg:items-center">
-              <div>
-                <p className="text-xs font-extrabold uppercase tracking-[0.26em] text-[#9f281f]">
-                  {editorial.donateEyebrow}
-                </p>
-                <h2 className="text-balance mt-4 max-w-4xl font-display text-6xl font-black uppercase leading-[0.88] md:text-8xl">
-                  {editorial.donateTitle}
-                </h2>
-                <p className="mt-6 max-w-2xl text-lg leading-8 text-black/65">
-                  {editorial.donateBody}
-                </p>
-              </div>
-              <div className="rounded-[2rem] bg-[#11100f] p-5 text-center text-white shadow-xl">
-                <img
-                  src="/media/qr-donation.webp"
-                  alt="QR code Tanzania Expedition"
-                  className="mx-auto w-full max-w-[220px] rounded-2xl"
-                />
-                <p className="mt-4 text-xs font-bold uppercase tracking-[0.18em] text-[#f5b73b]">
-                  {qrLabel}
-                </p>
-                <Link
-                  to={hrefFor(lang, "support")}
-                  className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-white hover:text-[#f5b73b]"
-                >
-                  {editorial.donateCta}
-                  <ArrowRight className="size-4" />
-                </Link>
-              </div>
+        <section className="relative overflow-hidden bg-[#545156] text-[#efe6d1]">
+          <div className="absolute inset-x-0 top-0 h-3 bg-[#fab937]" />
+          <div className="absolute bottom-0 left-0 right-0 h-8 bg-[#df3946]" />
+          <div className="mx-auto grid max-w-7xl gap-10 px-5 py-24 lg:grid-cols-[1fr_280px] lg:items-center lg:px-8 lg:py-28">
+            <div>
+              <p className="text-xs font-extrabold uppercase tracking-[0.26em] text-[#fab937]">
+                {editorial.donateEyebrow}
+              </p>
+              <h2 className="text-balance mt-4 max-w-4xl font-display text-6xl font-black uppercase leading-[0.88] md:text-8xl">
+                {editorial.donateTitle}
+              </h2>
+              <p className="mt-6 max-w-2xl text-lg leading-8 text-[#efe6d1]/75">
+                {editorial.donateBody}
+              </p>
+              <Link
+                to={hrefFor(lang, "support")}
+                className="mt-8 inline-flex min-h-12 items-center gap-2 rounded-full bg-[#df3946] px-7 py-3.5 font-bold text-white"
+              >
+                <Waves className="size-5 text-[#fab937]" />
+                {editorial.donateCta}
+                <ArrowRight className="size-5" />
+              </Link>
             </div>
-          </div>
-        </section>
 
-        <section className="bg-[#f5eddd] text-[#171411]">
-          <div className="mx-auto max-w-7xl px-5 py-24 text-center lg:px-8 lg:py-32">
-            <p className="text-xs font-extrabold uppercase tracking-[0.25em] text-[#149784]">
-              {copy.support.eyebrow}
-            </p>
-            <h2 className="text-balance mx-auto mt-5 max-w-4xl font-display text-6xl font-black uppercase leading-[0.9] md:text-8xl">
-              {copy.support.title}
-            </h2>
-            <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-black/60">
-              {copy.support.body}
-            </p>
-            <Link
-              to={hrefFor(lang, "support")}
-              className={cn(buttonVariants({ size: "lg" }), "mt-9")}
-            >
-              {copy.hero.primary}
-              <ArrowRight className="size-5" />
-            </Link>
+            <div className="rounded-[1.6rem] bg-[#efe6d1] p-5 text-center text-[#504e53] shadow-xl">
+              <img
+                src="/media/qr-donation.webp"
+                alt="QR code Tanzania Expedition"
+                className="mx-auto w-full max-w-[220px] rounded-xl"
+              />
+              <p className="mt-4 text-xs font-bold uppercase tracking-[0.18em] text-[#df3946]">
+                {qrLabel}
+              </p>
+            </div>
           </div>
         </section>
       </main>
