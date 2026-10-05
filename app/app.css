@@ -8,22 +8,23 @@
 :root {
   color-scheme: dark;
   font-synthesis: none;
-  --expedition-red: #e94235;
-  --expedition-yellow: #f5b73b;
-  --expedition-green: #149784;
-  --expedition-black: #11100f;
-  --expedition-ivory: #f5eddd;
+  --expedition-charcoal: #545156;
+  --expedition-red: #df3946;
+  --expedition-yellow: #fab937;
+  --expedition-green: #00a875;
+  --expedition-blue: #15466c;
+  --expedition-ivory: #efe6d1;
 }
 
 html {
   scroll-behavior: smooth;
-  background: var(--expedition-black);
+  background: var(--expedition-charcoal);
 }
 
 body {
   margin: 0;
   min-width: 320px;
-  background: var(--expedition-black);
+  background: var(--expedition-charcoal);
   color: var(--expedition-ivory);
   font-family: var(--font-sans);
   text-rendering: optimizeLegibility;
@@ -42,7 +43,7 @@ summary::-webkit-details-marker {
 
 ::selection {
   background: var(--expedition-yellow);
-  color: #171411;
+  color: var(--expedition-charcoal);
 }
 
 .font-display {
@@ -51,9 +52,9 @@ summary::-webkit-details-marker {
 
 .grain {
   background-image:
-    radial-gradient(circle at 20% 10%, rgba(255, 255, 255, 0.08) 0 1px, transparent 1px),
-    radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.05) 0 1px, transparent 1px);
-  background-size: 11px 13px, 17px 19px;
+    radial-gradient(circle at 20% 10%, rgba(255, 255, 255, 0.06) 0 1px, transparent 1px),
+    radial-gradient(circle at 80% 70%, rgba(0, 0, 0, 0.05) 0 1px, transparent 1px);
+  background-size: 13px 15px, 17px 19px;
   mix-blend-mode: soft-light;
 }
 
@@ -61,69 +62,58 @@ summary::-webkit-details-marker {
   text-wrap: balance;
 }
 
-.expedition-pattern {
-  background-image:
-    linear-gradient(135deg, transparent 0 44%, rgba(233, 66, 53, 0.7) 44% 48%, transparent 48% 100%),
-    linear-gradient(45deg, transparent 0 44%, rgba(245, 183, 59, 0.65) 44% 48%, transparent 48% 100%),
-    linear-gradient(90deg, rgba(20, 151, 132, 0.32) 1px, transparent 1px);
-  background-size: 70px 70px, 70px 70px, 35px 35px;
+.communique-zigzag {
+  background:
+    linear-gradient(135deg, transparent 0 35%, var(--expedition-green) 35% 48%, transparent 48% 100%) 0 0 / 52px 34px repeat-x;
 }
 
-.expedition-party-grid {
-  background-image:
-    radial-gradient(circle at 10% 15%, rgba(245, 183, 59, 0.72) 0 2px, transparent 2px),
-    radial-gradient(circle at 78% 28%, rgba(20, 151, 132, 0.55) 0 2px, transparent 2px),
-    linear-gradient(135deg, transparent 0 47%, rgba(17, 16, 15, 0.65) 47% 50%, transparent 50% 100%);
-  background-size: 36px 36px, 52px 52px, 72px 72px;
+.communique-slashes {
+  background:
+    linear-gradient(105deg, transparent 0 18%, var(--expedition-red) 18% 28%, transparent 28% 42%, var(--expedition-yellow) 42% 52%, transparent 52% 66%, var(--expedition-green) 66% 76%, transparent 76% 100%);
 }
 
-.expedition-circuit {
-  background-image:
-    linear-gradient(90deg, transparent 0 18%, rgba(233, 66, 53, 0.75) 18% 19%, transparent 19% 43%, rgba(245, 183, 59, 0.78) 43% 44%, transparent 44% 72%, rgba(20, 151, 132, 0.75) 72% 73%, transparent 73%),
-    linear-gradient(0deg, transparent 0 27%, rgba(233, 66, 53, 0.55) 27% 28%, transparent 28% 61%, rgba(20, 151, 132, 0.55) 61% 62%, transparent 62%);
-  background-size: 130px 86px, 130px 86px;
-  mask-image: linear-gradient(90deg, transparent, black 28%, black 100%);
-  -webkit-mask-image: linear-gradient(90deg, transparent, black 28%, black 100%);
+.communique-rule {
+  position: relative;
 }
 
-.expedition-circuit::before,
-.expedition-circuit::after {
+.communique-rule::before,
+.communique-rule::after {
   content: "";
   position: absolute;
-  border-radius: 999px;
+  left: 0;
+  height: 6px;
+  transform: rotate(-4deg);
+  transform-origin: left center;
+}
+
+.communique-rule::before {
+  bottom: -14px;
+  width: 72%;
+  background: var(--expedition-red);
+}
+
+.communique-rule::after {
+  bottom: -22px;
+  width: 46%;
   background: var(--expedition-yellow);
-  box-shadow:
-    66px 42px 0 var(--expedition-red),
-    134px 104px 0 var(--expedition-green),
-    212px 24px 0 var(--expedition-yellow),
-    284px 146px 0 var(--expedition-red);
 }
 
-.expedition-circuit::before {
-  width: 5px;
-  height: 5px;
-  top: 15%;
-  left: 18%;
+.communique-paper {
+  background:
+    radial-gradient(circle at 12% 14%, rgba(223, 57, 70, 0.06), transparent 20%),
+    radial-gradient(circle at 86% 76%, rgba(0, 168, 117, 0.06), transparent 20%),
+    var(--expedition-ivory);
 }
 
-.expedition-circuit::after {
-  width: 4px;
-  height: 4px;
-  top: 58%;
-  left: 34%;
+.communique-charcoal {
+  background:
+    radial-gradient(circle at 88% 18%, rgba(250, 185, 55, 0.08), transparent 18%),
+    var(--expedition-charcoal);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .expedition-circuit {
-    animation: expedition-shift 18s linear infinite alternate;
-  }
-}
-
-@keyframes expedition-shift {
-  from {
-    background-position: 0 0, 0 0;
-  }
-  to {
-    background-position: 35px 18px, -20px 14px;
+@media (max-width: 1279px) {
+  .communique-zigzag,
+  .communique-slashes {
+    opacity: 0.2;
   }
 }
