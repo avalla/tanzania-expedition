@@ -11,6 +11,7 @@ import {
   Sparkles,
   Users,
   Waves,
+  Youtube,
 } from "lucide-react";
 import { Link, redirect } from "react-router";
 
@@ -19,6 +20,7 @@ import { SavannaBackdrop } from "~/components/savanna-backdrop";
 import {
   FACEBOOK_URL,
   INSTAGRAM_URL,
+  YOUTUBE_URL,
   SiteShell,
 } from "~/components/site-shell";
 import { buttonVariants } from "~/components/ui/button";
@@ -146,12 +148,63 @@ export default function Home({ loaderData }: Route.ComponentProps) {
     },
   ];
 
+  const documentary = {
+    it: {
+      eyebrow: "Documentario · Tanzania 2022",
+      title: "Guarda la missione attraverso le immagini.",
+      body: "Il documentario del 2022 raccoglie luoghi, incontri e momenti del progetto. È il modo più diretto per capire da dove nasce la promessa di tornare.",
+      cta: "Apri su YouTube",
+    },
+    en: {
+      eyebrow: "Documentary · Tanzania 2022",
+      title: "Watch the mission through its images.",
+      body: "The 2022 documentary brings together places, encounters and moments from the project. It is the most direct way to understand where the promise to return began.",
+      cta: "Open on YouTube",
+    },
+    es: {
+      eyebrow: "Documental · Tanzania 2022",
+      title: "Mira la misión a través de sus imágenes.",
+      body: "El documental de 2022 reúne lugares, encuentros y momentos del proyecto. Es la forma más directa de entender dónde nació la promesa de volver.",
+      cta: "Abrir en YouTube",
+    },
+    fr: {
+      eyebrow: "Documentaire · Tanzanie 2022",
+      title: "Découvrez la mission à travers les images.",
+      body: "Le documentaire de 2022 rassemble lieux, rencontres et moments du projet. C'est la manière la plus directe de comprendre d'où vient la promesse de revenir.",
+      cta: "Ouvrir sur YouTube",
+    },
+  }[lang];
+
+  const qrLabel = {
+    it: "Scansiona il QR",
+    en: "Scan the QR",
+    es: "Escanea el QR",
+    fr: "Scannez le QR",
+  }[lang];
+
   return (
     <SiteShell lang={lang}>
       <main>
+        <div
+          aria-hidden="true"
+          className="pointer-events-none fixed bottom-0 right-0 z-30 hidden w-[250px] opacity-[0.16] 2xl:block [mask-image:linear-gradient(to_top,black_60%,transparent_100%)]"
+        >
+          <img
+            src="/media/flyer-figure.webp"
+            alt=""
+            className="h-auto w-full"
+          />
+        </div>
+
         <section className="relative flex min-h-[94svh] items-end overflow-hidden pt-20">
           <SavannaBackdrop />
           <div className="expedition-circuit absolute inset-y-0 right-0 hidden w-[34%] opacity-35 lg:block" />
+          <img
+            src="/media/flyer-celestial.webp"
+            alt=""
+            aria-hidden="true"
+            className="pointer-events-none absolute right-[12%] top-28 hidden w-80 opacity-75 xl:block"
+          />
           <div className="absolute left-0 top-20 h-2 w-full bg-[linear-gradient(90deg,#e94235_0_24%,#f5b73b_24%_49%,#149784_49%_73%,#d33b2f_73%)] opacity-80" />
 
           <div className="relative z-10 mx-auto w-full max-w-7xl px-5 pb-16 pt-28 lg:px-8 lg:pb-24">
@@ -321,6 +374,48 @@ export default function Home({ loaderData }: Route.ComponentProps) {
           </div>
         </section>
 
+        <section className="relative overflow-hidden bg-[#11100f]">
+          <div className="expedition-pattern absolute inset-0 opacity-[0.12]" />
+          <div className="relative mx-auto max-w-7xl px-5 py-24 lg:px-8 lg:py-32">
+            <div className="grid gap-10 lg:grid-cols-[.72fr_1.28fr] lg:items-center">
+              <div>
+                <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.25em] text-[#e94235]">
+                  <Youtube className="size-4" />
+                  {documentary.eyebrow}
+                </p>
+                <h2 className="text-balance mt-5 font-display text-6xl font-black uppercase leading-[0.9] md:text-8xl">
+                  {documentary.title}
+                </h2>
+                <p className="mt-6 max-w-xl text-lg leading-8 text-white/62">
+                  {documentary.body}
+                </p>
+                <a
+                  href={YOUTUBE_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={cn(buttonVariants({ variant: "secondary" }), "mt-8")}
+                >
+                  <Youtube className="size-5" />
+                  {documentary.cta}
+                </a>
+              </div>
+
+              <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-black shadow-2xl">
+                <div className="aspect-video">
+                  <iframe
+                    className="h-full w-full"
+                    src="https://www.youtube-nocookie.com/embed/51VFiMRKIp8?rel=0"
+                    title="Tanzania Expedition 2022 documentary"
+                    loading="lazy"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section className="relative overflow-hidden bg-[#0f0e0d]">
           <div className="expedition-circuit absolute inset-y-0 left-0 w-[38%] opacity-20" />
           <div className="relative mx-auto max-w-7xl px-5 py-24 lg:px-8 lg:py-32">
@@ -343,7 +438,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
               </div>
             </div>
 
-            <div className="mt-12 grid gap-5 md:grid-cols-2">
+            <div className="mt-12 grid gap-5 md:grid-cols-3">
               <a
                 href={INSTAGRAM_URL}
                 target="_blank"
@@ -377,6 +472,25 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                   </p>
                   <h3 className="mt-3 font-display text-4xl font-black uppercase">
                     {copy.stories.facebook}
+                  </h3>
+                  <ArrowRight className="mt-5 size-5 transition group-hover:translate-x-1" />
+                </div>
+              </a>
+
+              <a
+                href={YOUTUBE_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="group relative min-h-[340px] overflow-hidden rounded-[2rem] border border-[#f5b73b]/25 bg-[linear-gradient(145deg,#36270d,#11100f)] p-8"
+              >
+                <div className="grain absolute inset-0 opacity-35" />
+                <Youtube className="relative size-8 text-[#e94235]" />
+                <div className="relative mt-32">
+                  <p className="text-xs font-bold uppercase tracking-[0.2em] text-white/45">
+                    Tanzania 2022
+                  </p>
+                  <h3 className="mt-3 font-display text-4xl font-black uppercase">
+                    YouTube
                   </h3>
                   <ArrowRight className="mt-5 size-5 transition group-hover:translate-x-1" />
                 </div>
@@ -464,7 +578,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
         <section className="relative overflow-hidden bg-[#f5b73b] text-[#171411]">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(233,66,53,.24),transparent_21%),radial-gradient(circle_at_85%_75%,rgba(20,151,132,.28),transparent_24%)]" />
           <div className="relative mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-24">
-            <div className="grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
+            <div className="grid gap-10 lg:grid-cols-[1fr_260px] lg:items-center">
               <div>
                 <p className="text-xs font-extrabold uppercase tracking-[0.26em] text-[#9f281f]">
                   {editorial.donateEyebrow}
@@ -476,14 +590,23 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                   {editorial.donateBody}
                 </p>
               </div>
-              <Link
-                to={hrefFor(lang, "support")}
-                className="inline-flex min-h-14 items-center justify-center gap-3 rounded-full bg-[#11100f] px-8 py-4 text-base font-bold text-white transition hover:-translate-y-0.5 hover:bg-black"
-              >
-                <Waves className="size-5 text-[#149784]" />
-                {editorial.donateCta}
-                <ArrowRight className="size-5" />
-              </Link>
+              <div className="rounded-[2rem] bg-[#11100f] p-5 text-center text-white shadow-xl">
+                <img
+                  src="/media/qr-donation.webp"
+                  alt="QR code Tanzania Expedition"
+                  className="mx-auto w-full max-w-[220px] rounded-2xl"
+                />
+                <p className="mt-4 text-xs font-bold uppercase tracking-[0.18em] text-[#f5b73b]">
+                  {qrLabel}
+                </p>
+                <Link
+                  to={hrefFor(lang, "support")}
+                  className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-white hover:text-[#f5b73b]"
+                >
+                  {editorial.donateCta}
+                  <ArrowRight className="size-4" />
+                </Link>
+              </div>
             </div>
           </div>
         </section>

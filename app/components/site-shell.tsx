@@ -1,4 +1,4 @@
-import { Facebook, Instagram, Menu } from "lucide-react";
+import { Facebook, Instagram, Menu, Youtube } from "lucide-react";
 import { Link } from "react-router";
 
 import {
@@ -14,6 +14,8 @@ import { cn } from "~/lib/utils";
 export const INSTAGRAM_URL = "https://www.instagram.com/drops.in.the.ocean";
 export const FACEBOOK_URL =
   "https://www.facebook.com/profile.php?id=61589198731985";
+export const YOUTUBE_URL =
+  "https://youtu.be/51VFiMRKIp8?is=_tCvaoSDyG-VXLjR";
 
 export function SiteShell({
   lang,
@@ -154,6 +156,15 @@ export function SiteShell({
               aria-label={copy.common.facebook}
             >
               <Facebook className="size-5" />
+            </a>
+            <a
+              href={YOUTUBE_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="grid size-11 place-items-center rounded-full border border-white/12 text-white/70 transition hover:border-[#f5b73b]/60 hover:text-white"
+              aria-label="YouTube"
+            >
+              <Youtube className="size-5" />
             </a>
           </div>
         </div>

@@ -8,6 +8,7 @@ import {
   MapPin,
   Music2,
   Shirt,
+  Youtube,
 } from "lucide-react";
 import { Link, redirect } from "react-router";
 
@@ -16,6 +17,7 @@ import { CopyIbanButton } from "~/components/copy-iban-button";
 import {
   FACEBOOK_URL,
   INSTAGRAM_URL,
+  YOUTUBE_URL,
   SiteShell,
 } from "~/components/site-shell";
 import { getEditorialCopy } from "~/lib/editorial";
@@ -256,7 +258,7 @@ export default function SectionPage({ loaderData }: Route.ComponentProps) {
               </p>
             </div>
 
-            <div className="mt-12 grid gap-5 md:grid-cols-2">
+            <div className="mt-12 grid gap-5 md:grid-cols-3">
               <a
                 href={INSTAGRAM_URL}
                 target="_blank"
@@ -286,6 +288,34 @@ export default function SectionPage({ loaderData }: Route.ComponentProps) {
                   Tanzania Expedition
                 </p>
               </a>
+
+              <a
+                href={YOUTUBE_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="rounded-[2rem] border border-[#f5b73b]/30 bg-[#2d240e] p-8"
+              >
+                <Youtube className="size-8 text-[#e94235]" />
+                <h2 className="mt-20 font-display text-5xl font-black uppercase">
+                  YouTube
+                </h2>
+                <p className="mt-3 text-sm text-white/50">
+                  Tanzania 2022 documentary
+                </p>
+              </a>
+            </div>
+
+            <div className="mt-8 overflow-hidden rounded-[2rem] border border-white/10 bg-black">
+              <div className="aspect-video">
+                <iframe
+                  className="h-full w-full"
+                  src="https://www.youtube-nocookie.com/embed/51VFiMRKIp8?rel=0"
+                  title="Tanzania Expedition 2022 documentary"
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                />
+              </div>
             </div>
 
             <div className="mt-5 rounded-3xl border border-dashed border-white/15 p-8 text-white/50">
@@ -385,7 +415,8 @@ export default function SectionPage({ loaderData }: Route.ComponentProps) {
               </p>
             </div>
 
-            <div className="mt-5 rounded-[2rem] bg-[#f5eddd] p-8 text-[#171411] lg:p-10">
+            <div className="mt-5 grid gap-5 lg:grid-cols-[1fr_300px]">
+              <div className="rounded-[2rem] bg-[#f5eddd] p-8 text-[#171411] lg:p-10">
               <p className="text-xs font-extrabold uppercase tracking-[0.22em] text-[#e94235]">
                 {copy.support.donationTitle}
               </p>
@@ -420,6 +451,18 @@ export default function SectionPage({ loaderData }: Route.ComponentProps) {
                   />
                 </div>
               </div>
+            </div>
+
+              <aside className="rounded-[2rem] border border-[#f5b73b]/30 bg-[#11100f] p-6 text-center">
+                <img
+                  src="/media/qr-donation.webp"
+                  alt="QR code Tanzania Expedition"
+                  className="mx-auto w-full max-w-[240px] rounded-2xl"
+                />
+                <p className="mt-5 text-xs font-bold uppercase tracking-[0.18em] text-[#f5b73b]">
+                  QR · Tanzania Expedition
+                </p>
+              </aside>
             </div>
           </section>
         )}
