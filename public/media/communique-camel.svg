@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 973" role="img" aria-labelledby="title">
+<title id="title">Tanzania Expedition camel illustration</title>
+<g fill="none" stroke-linejoin="round">
+  <circle cx="75" cy="72" r="66" fill="#fab937"/>
+  <path d="M0 830L180 905 540 798 1000 900v73H0z" fill="#14516f"/>
+  <path d="M735 795l120-76 145 107v74z" fill="#153b5d"/>
+  <path d="M815 748l39-31 30 31-17-8 4 32-21-27-16 33 2-39z" fill="#155f7c"/>
+  <path d="M795 650c28-28 16-55 14-83 21-10 36-27 43-48 15 18 30 24 51 22-6 25-19 45-42 58 11 27 3 53-17 78-10 12-39 11-49-27z" fill="#153b5d"/>
+  <path d="M765 520c20-35 5-69 22-100 19-8 30-23 35-43m-37 53c-19-4-30-20-36-41m80-19c3-23 1-45 12-64" stroke="#00a980" stroke-width="16"/>
+  <path d="M168 454l36-109 112 50-31 59-94-28zm112-79 116-125 132 44-32 122-161 43z" fill="#e53243"/>
+  <path d="M374 253l122-88 123 58-55 83-140-12zM522 300l126-45 68 111-80 50-112-63z" fill="#e53243"/>
+  <path d="M419 179l100-75 42 98m-215 99l52-133m84 99l81-128 57 139m-235 80l195 40" stroke="#fab937" stroke-width="16"/>
+  <path d="M142 557l-45 218 55 62 27-206 111-37 89 54 89-39 105 54 86-56 81 74 19 206h-69l-35-179-53 21 36 158h-69l-64-174-74 10-28 164h-69l20-180-84-41-28 221h-69l-20-260z" fill="#e53243"/>
+  <path d="M178 542c53-65 129-90 198-58l65 44 79-9 66 29 71-5c38 12 64 36 78 68l-67 72-86-24-76 37-94-29-87 11-63-62z" fill="#e53243"/>
+  <path d="M238 463c-23-16-31-43-22-69m19 5c-8-31 5-59 31-72m8 113c18-37 55-55 90-49m-52 32l55-74 63 50-25 75z" stroke="#00a980" stroke-width="16"/>
+  <path d="M315 402l53-51 67 47-23 74-74 8z" fill="#00a980"/>
+  <path d="M345 441l58-38 28 26-23 25-29-19-16 22z" fill="#153b5d"/>
+  <path d="M688 389l57-54m-24 84l80-103" stroke="#e53243" stroke-width="13"/>
+  <path d="M293 507l278-56" stroke="#111" stroke-width="19"/>
+  <path d="M260 550l348-64" stroke="#111" stroke-width="17"/>
+  <path d="M255 630h430" stroke="#111" stroke-width="18"/>
+</g>
+<g font-family="Arial Black,Arial,sans-serif" font-weight="900" text-anchor="middle">
+  <text x="490" y="604" font-size="96" fill="#fab937" transform="rotate(-3 490 604)">MSWAHILI</text>
+  <text x="500" y="690" font-size="112" fill="#00a980" transform="rotate(2 500 690)">HURU</text>
+</g>
+<path d="M27 824c38-24 67-25 100 1-45-5-70 4-100-1zm178 73c28-22 54-22 79-4-34-3-52 5-79 4z" fill="#14516f"/>
+</svg>
