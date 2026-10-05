@@ -18,6 +18,7 @@ import {
   INSTAGRAM_URL,
   SiteShell,
 } from "~/components/site-shell";
+import { getEditorialCopy } from "~/lib/editorial";
 import {
   getCopy,
   hrefFor,
@@ -30,7 +31,12 @@ export function loader({ params }: Route.LoaderArgs) {
   if (!isLang(params.lang)) return redirect("/it");
   const page = resolvePage(params.lang, params.section);
   if (!page) throw new Response("Not found", { status: 404 });
-  return { lang: params.lang, page, copy: getCopy(params.lang) };
+  return {
+    lang: params.lang,
+    page,
+    copy: getCopy(params.lang),
+    editorial: getEditorialCopy(params.lang),
+  };
 }
 
 export function meta({ data }: Route.MetaArgs) {
@@ -77,13 +83,48 @@ function PageIntro({
   );
 }
 
+function LongCopy({
+  title,
+  paragraphs,
+}: {
+  title: string;
+  paragraphs: [string, string];
+}) {
+  return (
+    <div className="grid gap-10 lg:grid-cols-[.75fr_1.25fr]">
+      <h2 className="text-balance font-display text-5xl font-black uppercase leading-[0.92] text-[#f5b73b] md:text-7xl">
+        {title}
+      </h2>
+      <div className="space-y-6">
+        {paragraphs.map((paragraph) => (
+          <p key={paragraph} className="text-lg leading-8 text-white/64">
+            {paragraph}
+          </p>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function SectionPage({ loaderData }: Route.ComponentProps) {
-  const { lang, page, copy } = loaderData;
+  const { lang, page, copy, editorial } = loaderData;
 
   const projectCards = [
-    { Icon: Droplets, title: copy.current.cards[0][0], body: copy.current.cards[0][1] },
-    { Icon: HeartHandshake, title: copy.current.cards[1][0], body: copy.current.cards[1][1] },
-    { Icon: MapPin, title: copy.current.cards[2][0], body: copy.current.cards[2][1] },
+    {
+      Icon: Droplets,
+      title: copy.current.cards[0][0],
+      body: copy.current.cards[0][1],
+    },
+    {
+      Icon: HeartHandshake,
+      title: copy.current.cards[1][0],
+      body: copy.current.cards[1][1],
+    },
+    {
+      Icon: MapPin,
+      title: copy.current.cards[2][0],
+      body: copy.current.cards[2][1],
+    },
   ];
 
   const supportCards = [
@@ -96,6 +137,7 @@ export default function SectionPage({ loaderData }: Route.ComponentProps) {
     <SiteShell lang={lang} currentPage={page}>
       <main className="pt-20">
         <section className="relative overflow-hidden border-b border-white/10 bg-[radial-gradient(circle_at_85%_10%,rgba(245,183,59,.18),transparent_18%),linear-gradient(145deg,#1d1512,#11100f_60%)]">
+          <div className="expedition-circuit absolute inset-y-0 right-0 hidden w-[38%] opacity-20 lg:block" />
           <div className="grain absolute inset-0 opacity-25" />
           <div className="relative mx-auto max-w-7xl px-5 py-24 lg:px-8 lg:py-32">
             {page === "project" && (
@@ -145,7 +187,12 @@ export default function SectionPage({ loaderData }: Route.ComponentProps) {
 
         {page === "project" && (
           <section className="mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-28">
-            <div className="grid gap-5 md:grid-cols-3">
+            <LongCopy
+              title={editorial.kimotorokTitle}
+              paragraphs={editorial.kimotorokParagraphs}
+            />
+
+            <div className="mt-14 grid gap-5 md:grid-cols-3">
               {projectCards.map(({ Icon, title, body }) => (
                 <article
                   key={title}
@@ -159,8 +206,9 @@ export default function SectionPage({ loaderData }: Route.ComponentProps) {
                 </article>
               ))}
             </div>
-            <div className="mt-8 rounded-[2rem] border border-[#149784]/25 bg-[#149784]/8 p-8 lg:p-10">
-              <p className="max-w-3xl text-lg leading-8 text-white/68">
+
+            <div className="expedition-pattern mt-10 overflow-hidden rounded-[2rem] border border-[#149784]/25 bg-[#149784]/8 p-8 lg:p-10">
+              <p className="relative max-w-3xl text-lg leading-8 text-white/72">
                 {copy.promise.body}
               </p>
             </div>
@@ -199,32 +247,47 @@ export default function SectionPage({ loaderData }: Route.ComponentProps) {
 
         {page === "stories" && (
           <section className="mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-28">
-            <div className="grid gap-5 md:grid-cols-2">
+            <div className="grid gap-10 lg:grid-cols-[.8fr_1.2fr]">
+              <h2 className="text-balance font-display text-5xl font-black uppercase leading-[0.92] text-[#f5b73b] md:text-7xl">
+                {editorial.socialTitle}
+              </h2>
+              <p className="text-lg leading-8 text-white/64">
+                {editorial.socialBody}
+              </p>
+            </div>
+
+            <div className="mt-12 grid gap-5 md:grid-cols-2">
               <a
                 href={INSTAGRAM_URL}
                 target="_blank"
                 rel="noreferrer"
-                className="rounded-[2rem] border border-white/10 bg-[#2a1816] p-8"
+                className="rounded-[2rem] border border-[#e94235]/30 bg-[#2a1816] p-8"
               >
-                <Instagram className="size-8 text-[#e94235]" />
+                <Instagram className="size-8 text-[#f5b73b]" />
                 <h2 className="mt-20 font-display text-5xl font-black uppercase">
                   Instagram
                 </h2>
-                <p className="mt-3 text-sm text-white/50">@drops.in.the.ocean</p>
+                <p className="mt-3 text-sm text-white/50">
+                  @drops.in.the.ocean
+                </p>
               </a>
+
               <a
                 href={FACEBOOK_URL}
                 target="_blank"
                 rel="noreferrer"
-                className="rounded-[2rem] border border-white/10 bg-[#142522] p-8"
+                className="rounded-[2rem] border border-[#149784]/30 bg-[#142522] p-8"
               >
-                <Facebook className="size-8 text-[#149784]" />
+                <Facebook className="size-8 text-[#f5b73b]" />
                 <h2 className="mt-20 font-display text-5xl font-black uppercase">
                   Facebook
                 </h2>
-                <p className="mt-3 text-sm text-white/50">Tanzania Expedition</p>
+                <p className="mt-3 text-sm text-white/50">
+                  Tanzania Expedition
+                </p>
               </a>
             </div>
+
             <div className="mt-5 rounded-3xl border border-dashed border-white/15 p-8 text-white/50">
               {copy.mission2022.mediaBody}
             </div>
@@ -232,21 +295,27 @@ export default function SectionPage({ loaderData }: Route.ComponentProps) {
         )}
 
         {page === "events" && (
-          <section className="mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-28">
-            <div className="grid gap-5 md:grid-cols-2">
-              <div className="rounded-[2rem] bg-[#e94235] p-8 text-white">
-                <Music2 className="size-8" />
-                <h2 className="mt-16 font-display text-5xl font-black uppercase">
-                  Benefit parties
-                </h2>
-                <p className="mt-4 max-w-md text-white/78">{copy.events.body}</p>
-              </div>
-              <div className="rounded-[2rem] border border-white/10 bg-white/[0.035] p-8">
-                <CalendarDays className="size-8 text-[#f5b73b]" />
-                <h2 className="mt-16 font-display text-5xl font-black uppercase">
-                  Coming soon
-                </h2>
-                <p className="mt-4 text-white/50">{copy.events.empty}</p>
+          <section className="relative overflow-hidden">
+            <div className="expedition-party-grid absolute inset-0 opacity-15" />
+            <div className="relative mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-28">
+              <div className="grid gap-5 md:grid-cols-2">
+                <div className="rounded-[2rem] bg-[#e94235] p-8 text-white">
+                  <Music2 className="size-8 text-[#f5b73b]" />
+                  <h2 className="mt-16 font-display text-5xl font-black uppercase">
+                    Benefit parties
+                  </h2>
+                  <p className="mt-4 max-w-md text-white/82">
+                    {editorial.eventsLongBody}
+                  </p>
+                </div>
+
+                <div className="rounded-[2rem] border border-white/10 bg-white/[0.035] p-8">
+                  <CalendarDays className="size-8 text-[#f5b73b]" />
+                  <h2 className="mt-16 font-display text-5xl font-black uppercase">
+                    Coming soon
+                  </h2>
+                  <p className="mt-4 text-white/50">{copy.events.empty}</p>
+                </div>
               </div>
             </div>
           </section>
@@ -254,17 +323,35 @@ export default function SectionPage({ loaderData }: Route.ComponentProps) {
 
         {page === "about" && (
           <section className="mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-28">
-            <div className="grid gap-8 lg:grid-cols-[1fr_.8fr]">
+            <LongCopy
+              title={editorial.originTitle}
+              paragraphs={editorial.originParagraphs}
+            />
+
+            <div className="mt-16 grid gap-8 lg:grid-cols-[1fr_.8fr]">
               <div className="rounded-[2rem] border border-white/10 p-8 lg:p-10">
-                <p className="text-lg leading-8 text-white/66">
-                  {copy.promise.body}
-                </p>
+                <h2 className="font-display text-4xl font-black uppercase text-[#149784]">
+                  {editorial.restartTitle}
+                </h2>
+                <div className="mt-5 space-y-5">
+                  {editorial.restartParagraphs.map((paragraph) => (
+                    <p
+                      key={paragraph}
+                      className="text-lg leading-8 text-white/66"
+                    >
+                      {paragraph}
+                    </p>
+                  ))}
+                </div>
               </div>
+
               <aside className="rounded-[2rem] bg-[#f5eddd] p-8 text-[#171411] lg:p-10">
                 <p className="text-xs font-extrabold uppercase tracking-[0.22em] text-[#e94235]">
                   2026
                 </p>
-                <p className="mt-5 leading-7 text-black/65">{copy.about.note}</p>
+                <p className="mt-5 leading-7 text-black/65">
+                  {copy.about.note}
+                </p>
               </aside>
             </div>
           </section>
@@ -286,7 +373,19 @@ export default function SectionPage({ loaderData }: Route.ComponentProps) {
               ))}
             </div>
 
-            <div className="mt-10 rounded-[2rem] bg-[#f5eddd] p-8 text-[#171411] lg:p-10">
+            <div className="mt-10 rounded-[2rem] bg-[#f5b73b] p-8 text-[#171411] lg:p-10">
+              <p className="text-xs font-extrabold uppercase tracking-[0.22em] text-[#9f281f]">
+                {editorial.donateEyebrow}
+              </p>
+              <h2 className="mt-4 max-w-3xl font-display text-5xl font-black uppercase leading-[0.92] md:text-7xl">
+                {editorial.donateTitle}
+              </h2>
+              <p className="mt-5 max-w-2xl text-lg leading-8 text-black/65">
+                {editorial.donateBody}
+              </p>
+            </div>
+
+            <div className="mt-5 rounded-[2rem] bg-[#f5eddd] p-8 text-[#171411] lg:p-10">
               <p className="text-xs font-extrabold uppercase tracking-[0.22em] text-[#e94235]">
                 {copy.support.donationTitle}
               </p>

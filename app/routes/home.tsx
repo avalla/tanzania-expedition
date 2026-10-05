@@ -10,6 +10,7 @@ import {
   PackageOpen,
   Sparkles,
   Users,
+  Waves,
 } from "lucide-react";
 import { Link, redirect } from "react-router";
 
@@ -21,12 +22,17 @@ import {
   SiteShell,
 } from "~/components/site-shell";
 import { buttonVariants } from "~/components/ui/button";
+import { getEditorialCopy } from "~/lib/editorial";
 import { getCopy, hrefFor, isLang } from "~/lib/i18n";
 import { cn } from "~/lib/utils";
 
 export function loader({ params }: Route.LoaderArgs) {
   if (!isLang(params.lang)) return redirect("/it");
-  return { lang: params.lang, copy: getCopy(params.lang) };
+  return {
+    lang: params.lang,
+    copy: getCopy(params.lang),
+    editorial: getEditorialCopy(params.lang),
+  };
 }
 
 export function meta({ data }: Route.MetaArgs) {
@@ -46,37 +52,121 @@ export function meta({ data }: Route.MetaArgs) {
   ];
 }
 
+function EditorialBlock({
+  eyebrow,
+  title,
+  paragraphs,
+  tone = "dark",
+}: {
+  eyebrow: string;
+  title: string;
+  paragraphs: [string, string];
+  tone?: "dark" | "light";
+}) {
+  const light = tone === "light";
+
+  return (
+    <div className="grid gap-10 lg:grid-cols-[.82fr_1.18fr] lg:gap-16">
+      <div>
+        <p
+          className={cn(
+            "text-xs font-extrabold uppercase tracking-[0.28em]",
+            light ? "text-[#e94235]" : "text-[#f5b73b]",
+          )}
+        >
+          {eyebrow}
+        </p>
+        <h2
+          className={cn(
+            "text-balance mt-5 font-display text-5xl font-black uppercase leading-[0.9] md:text-7xl",
+            light ? "text-[#171411]" : "text-white",
+          )}
+        >
+          {title}
+        </h2>
+      </div>
+      <div className="space-y-6">
+        {paragraphs.map((paragraph) => (
+          <p
+            key={paragraph}
+            className={cn(
+              "text-lg leading-8",
+              light ? "text-[#171411]/68" : "text-white/64",
+            )}
+          >
+            {paragraph}
+          </p>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function Home({ loaderData }: Route.ComponentProps) {
-  const { lang, copy } = loaderData;
+  const { lang, copy, editorial } = loaderData;
 
   const promiseCards = [
-    { Icon: Droplets, title: copy.promise.pillars[0][0], body: copy.promise.pillars[0][1] },
-    { Icon: Sparkles, title: copy.promise.pillars[1][0], body: copy.promise.pillars[1][1] },
-    { Icon: PackageOpen, title: copy.promise.pillars[2][0], body: copy.promise.pillars[2][1] },
-    { Icon: Users, title: copy.promise.pillars[3][0], body: copy.promise.pillars[3][1] },
+    {
+      Icon: Droplets,
+      title: copy.promise.pillars[0][0],
+      body: copy.promise.pillars[0][1],
+    },
+    {
+      Icon: Sparkles,
+      title: copy.promise.pillars[1][0],
+      body: copy.promise.pillars[1][1],
+    },
+    {
+      Icon: PackageOpen,
+      title: copy.promise.pillars[2][0],
+      body: copy.promise.pillars[2][1],
+    },
+    {
+      Icon: Users,
+      title: copy.promise.pillars[3][0],
+      body: copy.promise.pillars[3][1],
+    },
   ];
 
   const currentCards = [
-    { Icon: Droplets, title: copy.current.cards[0][0], body: copy.current.cards[0][1] },
-    { Icon: HeartHandshake, title: copy.current.cards[1][0], body: copy.current.cards[1][1] },
-    { Icon: MapPin, title: copy.current.cards[2][0], body: copy.current.cards[2][1] },
+    {
+      Icon: Droplets,
+      title: copy.current.cards[0][0],
+      body: copy.current.cards[0][1],
+    },
+    {
+      Icon: HeartHandshake,
+      title: copy.current.cards[1][0],
+      body: copy.current.cards[1][1],
+    },
+    {
+      Icon: MapPin,
+      title: copy.current.cards[2][0],
+      body: copy.current.cards[2][1],
+    },
   ];
 
   return (
     <SiteShell lang={lang}>
       <main>
-        <section className="relative flex min-h-[92svh] items-end overflow-hidden pt-20">
+        <section className="relative flex min-h-[94svh] items-end overflow-hidden pt-20">
           <SavannaBackdrop />
+          <div className="expedition-circuit absolute inset-y-0 right-0 hidden w-[34%] opacity-35 lg:block" />
+          <div className="absolute left-0 top-20 h-2 w-full bg-[linear-gradient(90deg,#e94235_0_24%,#f5b73b_24%_49%,#149784_49%_73%,#d33b2f_73%)] opacity-80" />
+
           <div className="relative z-10 mx-auto w-full max-w-7xl px-5 pb-16 pt-28 lg:px-8 lg:pb-24">
-            <div className="max-w-4xl">
+            <div className="max-w-5xl">
               <p className="mb-5 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.25em] text-[#f5b73b]">
                 <MapPin className="size-4" />
                 {copy.hero.eyebrow}
               </p>
-              <h1 className="text-balance font-display text-[clamp(4rem,10vw,9rem)] font-black uppercase leading-[0.82] tracking-[-0.035em] text-white">
-                {copy.hero.title}
+              <h1 className="text-balance font-display text-[clamp(4.6rem,10.7vw,10rem)] font-black uppercase leading-[0.8] tracking-[-0.04em] text-white">
+                <span className="block">{copy.hero.title.split(".")[0]}.</span>
+                <span className="mt-2 block text-[#f5b73b]">
+                  {copy.hero.title.split(".").slice(1).join(".").trim()}
+                </span>
               </h1>
-              <p className="mt-7 max-w-2xl text-base leading-7 text-white/70 md:text-lg">
+              <p className="mt-8 max-w-2xl text-base leading-7 text-white/72 md:text-lg">
                 {copy.hero.lead}
               </p>
               <div className="mt-9 flex flex-wrap gap-3">
@@ -89,13 +179,17 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                 </Link>
                 <Link
                   to={hrefFor(lang, "missions", "2022")}
-                  className={buttonVariants({ variant: "secondary", size: "lg" })}
+                  className={buttonVariants({
+                    variant: "secondary",
+                    size: "lg",
+                  })}
                 >
                   {copy.hero.secondary}
                   <ArrowRight className="size-5" />
                 </Link>
               </div>
             </div>
+
             <a
               href="#promise"
               className="mt-16 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-white/50 transition hover:text-white"
@@ -108,39 +202,44 @@ export default function Home({ loaderData }: Route.ComponentProps) {
 
         <section id="promise" className="bg-[#f5eddd] text-[#171411]">
           <div className="mx-auto max-w-7xl px-5 py-24 lg:px-8 lg:py-32">
-            <div className="grid gap-14 lg:grid-cols-[.9fr_1.1fr]">
-              <div>
-                <p className="text-xs font-extrabold uppercase tracking-[0.25em] text-[#e94235]">
-                  {copy.promise.eyebrow}
-                </p>
-                <h2 className="text-balance mt-5 font-display text-5xl font-black uppercase leading-[0.92] md:text-7xl">
-                  {copy.promise.title}
-                </h2>
-              </div>
-              <div>
-                <p className="max-w-2xl text-lg leading-8 text-[#171411]/70">
-                  {copy.promise.body}
-                </p>
-                <div className="mt-10 grid gap-px overflow-hidden rounded-3xl border border-black/10 bg-black/10 sm:grid-cols-2">
-                  {promiseCards.map(({ Icon, title, body }) => (
-                    <article key={title} className="bg-[#fbf6eb] p-7">
-                      <Icon className="size-6 text-[#149784]" />
-                      <h3 className="mt-5 font-display text-3xl font-black uppercase">
-                        {title}
-                      </h3>
-                      <p className="mt-2 text-sm leading-6 text-black/55">
-                        {body}
-                      </p>
-                    </article>
-                  ))}
-                </div>
-              </div>
+            <EditorialBlock
+              eyebrow={editorial.originEyebrow}
+              title={editorial.originTitle}
+              paragraphs={editorial.originParagraphs}
+              tone="light"
+            />
+
+            <div className="mt-16 grid gap-px overflow-hidden rounded-[2rem] border border-black/10 bg-black/10 sm:grid-cols-2 lg:grid-cols-4">
+              {promiseCards.map(({ Icon, title, body }) => (
+                <article key={title} className="bg-[#fbf6eb] p-7">
+                  <Icon className="size-6 text-[#149784]" />
+                  <h3 className="mt-5 font-display text-3xl font-black uppercase">
+                    {title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-black/55">{body}</p>
+                </article>
+              ))}
             </div>
           </div>
         </section>
 
-        <section className="relative overflow-hidden border-y border-white/10 bg-[#131211]">
-          <div className="absolute -left-44 top-0 size-96 rounded-full bg-[#149784]/8 blur-3xl" />
+        <section className="relative overflow-hidden border-y border-white/10 bg-[#11100f]">
+          <div className="expedition-pattern absolute inset-0 opacity-[0.16]" />
+          <div className="mx-auto max-w-7xl px-5 py-24 lg:px-8 lg:py-32">
+            <EditorialBlock
+              eyebrow={editorial.restartEyebrow}
+              title={editorial.restartTitle}
+              paragraphs={editorial.restartParagraphs}
+            />
+
+            <blockquote className="mx-auto mt-20 max-w-5xl text-balance text-center font-display text-5xl font-black uppercase leading-[0.9] text-[#f5b73b] md:text-7xl">
+              “{editorial.bridgeQuote}”
+            </blockquote>
+          </div>
+        </section>
+
+        <section className="relative overflow-hidden bg-[#1a1714]">
+          <div className="absolute -left-44 top-0 size-96 rounded-full bg-[#149784]/10 blur-3xl" />
           <div className="mx-auto grid max-w-7xl gap-12 px-5 py-24 lg:grid-cols-[1.1fr_.9fr] lg:px-8 lg:py-32">
             <div>
               <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#149784]">
@@ -154,21 +253,25 @@ export default function Home({ loaderData }: Route.ComponentProps) {
               </p>
               <Link
                 to={hrefFor(lang, "missions", "2022")}
-                className={cn(buttonVariants({ variant: "secondary" }), "mt-8")}
+                className={cn(
+                  buttonVariants({ variant: "secondary" }),
+                  "mt-8",
+                )}
               >
                 {copy.mission2022.cta}
                 <ArrowRight className="size-4" />
               </Link>
             </div>
 
-            <div className="relative min-h-[350px] overflow-hidden rounded-[2rem] border border-white/10 bg-[radial-gradient(circle_at_70%_20%,rgba(245,183,59,.25),transparent_22%),linear-gradient(145deg,#2a1915,#11100f_66%)] p-7">
+            <div className="relative min-h-[380px] overflow-hidden rounded-[2rem] border border-white/10 bg-[radial-gradient(circle_at_70%_20%,rgba(245,183,59,.28),transparent_22%),linear-gradient(145deg,#341b13,#11100f_66%)] p-7">
               <div className="grain absolute inset-0 opacity-40" />
-              <div className="relative flex h-full min-h-[300px] flex-col justify-between">
+              <div className="absolute inset-x-0 top-0 h-1 bg-[linear-gradient(90deg,#e94235,#f5b73b,#149784,#e94235)]" />
+              <div className="relative flex h-full min-h-[326px] flex-col justify-between">
                 <span className="w-fit rounded-full border border-white/15 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.2em] text-white/60">
                   2022 · Tanzania
                 </span>
                 <div>
-                  <div className="font-display text-8xl font-black leading-none text-[#f5b73b]">
+                  <div className="font-display text-9xl font-black leading-none text-[#f5b73b]">
                     22
                   </div>
                   <p className="mt-3 max-w-sm text-sm leading-6 text-white/60">
@@ -180,65 +283,64 @@ export default function Home({ loaderData }: Route.ComponentProps) {
           </div>
         </section>
 
-        <section className="bg-[#1b1714]">
+        <section className="bg-[#f5eddd] text-[#171411]">
           <div className="mx-auto max-w-7xl px-5 py-24 lg:px-8 lg:py-32">
-            <div className="grid gap-12 lg:grid-cols-[.85fr_1.15fr]">
-              <div>
-                <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#f5b73b]">
-                  {copy.current.eyebrow}
-                </p>
-                <h2 className="text-balance mt-5 font-display text-6xl font-black uppercase leading-[0.9] md:text-8xl">
-                  {copy.current.title}
-                </h2>
-                <p className="mt-6 max-w-xl text-lg leading-8 text-white/62">
-                  {copy.current.body}
-                </p>
-                <Link
-                  to={hrefFor(lang, "project")}
-                  className={cn(buttonVariants(), "mt-8")}
+            <EditorialBlock
+              eyebrow={editorial.kimotorokEyebrow}
+              title={editorial.kimotorokTitle}
+              paragraphs={editorial.kimotorokParagraphs}
+              tone="light"
+            />
+
+            <div className="mt-14 grid gap-4 md:grid-cols-3">
+              {currentCards.map(({ Icon, title, body }) => (
+                <article
+                  key={title}
+                  className="rounded-[1.7rem] border border-black/10 bg-[#fffaf0] p-7"
                 >
-                  {copy.current.cta}
-                  <ArrowRight className="size-4" />
-                </Link>
-              </div>
-              <div className="grid gap-4">
-                {currentCards.map(({ Icon, title, body }) => (
-                  <article
-                    key={title}
-                    className="rounded-3xl border border-white/10 bg-white/[0.035] p-7"
-                  >
-                    <div className="flex items-start gap-5">
-                      <div className="grid size-12 shrink-0 place-items-center rounded-2xl bg-[#f5b73b] text-[#171411]">
-                        <Icon className="size-6" />
-                      </div>
-                      <div>
-                        <h3 className="font-display text-3xl font-black uppercase">
-                          {title}
-                        </h3>
-                        <p className="mt-2 text-sm leading-6 text-white/55">
-                          {body}
-                        </p>
-                      </div>
-                    </div>
-                  </article>
-                ))}
-              </div>
+                  <div className="grid size-12 place-items-center rounded-2xl bg-[#f5b73b] text-[#171411]">
+                    <Icon className="size-6" />
+                  </div>
+                  <h3 className="mt-6 font-display text-3xl font-black uppercase">
+                    {title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-black/55">{body}</p>
+                </article>
+              ))}
+            </div>
+
+            <div className="mt-12 flex flex-wrap gap-3">
+              <Link
+                to={hrefFor(lang, "project")}
+                className={buttonVariants()}
+              >
+                {copy.current.cta}
+                <ArrowRight className="size-4" />
+              </Link>
             </div>
           </div>
         </section>
 
-        <section className="bg-[#0f0e0d]">
-          <div className="mx-auto max-w-7xl px-5 py-24 lg:px-8 lg:py-32">
-            <div className="max-w-3xl">
-              <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#149784]">
-                {copy.stories.eyebrow}
-              </p>
-              <h2 className="text-balance mt-4 font-display text-6xl font-black uppercase leading-[0.9] md:text-8xl">
-                {copy.stories.title}
-              </h2>
-              <p className="mt-6 text-lg leading-8 text-white/60">
-                {copy.stories.body}
-              </p>
+        <section className="relative overflow-hidden bg-[#0f0e0d]">
+          <div className="expedition-circuit absolute inset-y-0 left-0 w-[38%] opacity-20" />
+          <div className="relative mx-auto max-w-7xl px-5 py-24 lg:px-8 lg:py-32">
+            <div className="grid gap-10 lg:grid-cols-[.8fr_1.2fr]">
+              <div>
+                <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#149784]">
+                  {copy.stories.eyebrow}
+                </p>
+                <h2 className="text-balance mt-4 font-display text-6xl font-black uppercase leading-[0.9] md:text-8xl">
+                  {editorial.socialTitle}
+                </h2>
+              </div>
+              <div>
+                <p className="text-lg leading-8 text-white/62">
+                  {editorial.socialBody}
+                </p>
+                <p className="mt-5 text-sm leading-6 text-white/42">
+                  {copy.mission2022.mediaBody}
+                </p>
+              </div>
             </div>
 
             <div className="mt-12 grid gap-5 md:grid-cols-2">
@@ -246,11 +348,11 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                 href={INSTAGRAM_URL}
                 target="_blank"
                 rel="noreferrer"
-                className="group relative min-h-[320px] overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(145deg,#34201b,#151312)] p-8"
+                className="group relative min-h-[340px] overflow-hidden rounded-[2rem] border border-[#e94235]/25 bg-[linear-gradient(145deg,#3c1614,#151312)] p-8"
               >
                 <div className="grain absolute inset-0 opacity-35" />
-                <Instagram className="relative size-8 text-[#e94235]" />
-                <div className="relative mt-28">
+                <Instagram className="relative size-8 text-[#f5b73b]" />
+                <div className="relative mt-32">
                   <p className="text-xs font-bold uppercase tracking-[0.2em] text-white/45">
                     @drops.in.the.ocean
                   </p>
@@ -265,11 +367,11 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                 href={FACEBOOK_URL}
                 target="_blank"
                 rel="noreferrer"
-                className="group relative min-h-[320px] overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(145deg,#132825,#111211)] p-8"
+                className="group relative min-h-[340px] overflow-hidden rounded-[2rem] border border-[#149784]/25 bg-[linear-gradient(145deg,#0d332c,#111211)] p-8"
               >
                 <div className="grain absolute inset-0 opacity-35" />
-                <Facebook className="relative size-8 text-[#149784]" />
-                <div className="relative mt-28">
+                <Facebook className="relative size-8 text-[#f5b73b]" />
+                <div className="relative mt-32">
                   <p className="text-xs font-bold uppercase tracking-[0.2em] text-white/45">
                     Tanzania Expedition
                   </p>
@@ -281,36 +383,58 @@ export default function Home({ loaderData }: Route.ComponentProps) {
               </a>
             </div>
 
-            <div className="mt-5 rounded-3xl border border-dashed border-white/15 px-7 py-6 text-sm text-white/45">
-              {copy.stories.pending}
+            <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {["01", "02", "03", "04"].map((slot, index) => (
+                <div
+                  key={slot}
+                  className={cn(
+                    "relative aspect-[4/3] overflow-hidden rounded-3xl border border-dashed border-white/15",
+                    index % 2 === 0
+                      ? "bg-[linear-gradient(145deg,#281713,#10100f)]"
+                      : "bg-[linear-gradient(145deg,#102c27,#10100f)]",
+                  )}
+                >
+                  <div className="grain absolute inset-0 opacity-40" />
+                  <span className="absolute left-5 top-5 font-display text-4xl font-black text-white/18">
+                    {slot}
+                  </span>
+                  <span className="absolute bottom-5 left-5 right-5 text-xs font-bold uppercase tracking-[0.16em] text-white/40">
+                    {copy.stories.pending}
+                  </span>
+                </div>
+              ))}
             </div>
           </div>
         </section>
 
         <section className="relative overflow-hidden bg-[#e94235] text-white">
-          <div className="grain absolute inset-0 opacity-30" />
-          <div className="relative mx-auto grid max-w-7xl gap-12 px-5 py-24 lg:grid-cols-[1fr_.8fr] lg:px-8 lg:py-28">
+          <div className="expedition-party-grid absolute inset-0 opacity-25" />
+          <div className="relative mx-auto grid max-w-7xl gap-12 px-5 py-24 lg:grid-cols-[1fr_.82fr] lg:px-8 lg:py-28">
             <div>
-              <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.25em] text-white/70">
+              <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.25em] text-[#f5b73b]">
                 <Music2 className="size-4" />
                 {copy.events.eyebrow}
               </p>
-              <h2 className="text-balance mt-4 font-display text-6xl font-black uppercase leading-[0.9] md:text-8xl">
+              <h2 className="text-balance mt-4 font-display text-6xl font-black uppercase leading-[0.88] md:text-8xl">
                 {copy.events.title}
               </h2>
-              <p className="mt-6 max-w-2xl text-lg leading-8 text-white/80">
-                {copy.events.body}
+              <p className="mt-6 max-w-2xl text-lg leading-8 text-white/84">
+                {editorial.eventsLongBody}
               </p>
               <Link
                 to={hrefFor(lang, "events")}
-                className={cn(buttonVariants({ variant: "light" }), "mt-8")}
+                className={cn(
+                  buttonVariants({ variant: "light" }),
+                  "mt-8",
+                )}
               >
                 {copy.events.cta}
                 <ArrowRight className="size-4" />
               </Link>
             </div>
+
             <div className="flex items-end">
-              <div className="w-full rounded-[2rem] border border-white/25 bg-[#161311]/90 p-8 shadow-2xl">
+              <div className="w-full rounded-[2rem] border border-white/25 bg-[#161311]/92 p-8 shadow-2xl">
                 <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#f5b73b]">
                   Benefit calendar
                 </span>
@@ -329,8 +453,37 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                     </div>
                   ))}
                 </div>
-                <p className="mt-6 text-sm text-white/50">{copy.events.empty}</p>
+                <p className="mt-6 text-sm text-white/50">
+                  {copy.events.empty}
+                </p>
               </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="relative overflow-hidden bg-[#f5b73b] text-[#171411]">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(233,66,53,.24),transparent_21%),radial-gradient(circle_at_85%_75%,rgba(20,151,132,.28),transparent_24%)]" />
+          <div className="relative mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-24">
+            <div className="grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
+              <div>
+                <p className="text-xs font-extrabold uppercase tracking-[0.26em] text-[#9f281f]">
+                  {editorial.donateEyebrow}
+                </p>
+                <h2 className="text-balance mt-4 max-w-4xl font-display text-6xl font-black uppercase leading-[0.88] md:text-8xl">
+                  {editorial.donateTitle}
+                </h2>
+                <p className="mt-6 max-w-2xl text-lg leading-8 text-black/65">
+                  {editorial.donateBody}
+                </p>
+              </div>
+              <Link
+                to={hrefFor(lang, "support")}
+                className="inline-flex min-h-14 items-center justify-center gap-3 rounded-full bg-[#11100f] px-8 py-4 text-base font-bold text-white transition hover:-translate-y-0.5 hover:bg-black"
+              >
+                <Waves className="size-5 text-[#149784]" />
+                {editorial.donateCta}
+                <ArrowRight className="size-5" />
+              </Link>
             </div>
           </div>
         </section>
