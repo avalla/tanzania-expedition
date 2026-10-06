@@ -36,13 +36,13 @@ export function SiteShell({
         <div className="mx-auto flex h-[74px] max-w-7xl items-center gap-5 px-5 lg:px-8">
           <Link
             to={hrefFor(lang)}
-            className="mr-auto flex items-center"
+            className="mr-auto flex h-full w-[205px] shrink-0 items-center justify-center py-2"
             aria-label="Tanzania Expedition"
           >
             <img
-              src="/media/communique-logo.svg"
+              src="/media/communique-logo.webp"
               alt="Tanzania Expedition"
-              className="h-11 w-auto max-w-[220px]"
+              className="block h-[46px] w-[194px] object-contain object-center"
             />
           </Link>
 
@@ -119,28 +119,15 @@ export function SiteShell({
         </div>
       </header>
 
-      {currentPage ? (
-        <div
-          aria-hidden="true"
-          className="pointer-events-none fixed bottom-0 right-0 z-20 hidden w-[230px] opacity-[0.12] 2xl:block"
-        >
-          <img
-            src="/media/communique-camel.svg"
-            alt=""
-            className="h-auto w-full"
-          />
-        </div>
-      ) : null}
-
       {children}
 
       <footer className="border-t border-white/10 border-b-[10px] border-b-[#df3946] bg-[#4a484d]">
         <div className="mx-auto grid max-w-7xl gap-10 px-5 py-12 md:grid-cols-[1.2fr_.8fr] lg:px-8">
           <div>
             <img
-              src="/media/communique-logo.svg"
+              src="/media/communique-logo.webp"
               alt="Tanzania Expedition"
-              className="h-14 w-auto max-w-[280px]"
+              className="block h-16 w-[280px] object-contain object-left"
             />
             <p className="mt-3 max-w-xl text-sm leading-6 text-white/55">
               {copy.common.sourceNote}
