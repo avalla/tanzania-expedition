@@ -197,7 +197,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
           <div className="relative mx-auto grid w-full max-w-7xl gap-10 px-5 pb-20 pt-20 lg:grid-cols-[1.04fr_.96fr] lg:items-center lg:px-8 lg:pb-24">
             <div className="relative z-10">
               <img
-                src="/media/communique-logo.webp"
+                src="/media/communique-logo-exact.webp"
                 alt="Tanzania Expedition"
                 className="mb-10 block h-auto w-[min(440px,80vw)] object-contain object-left"
               />
@@ -248,22 +248,11 @@ export default function Home({ loaderData }: Route.ComponentProps) {
               aria-hidden="true"
               className="relative mx-auto flex min-h-[520px] w-full max-w-[620px] items-end justify-center self-end overflow-hidden"
             >
-              <div className="absolute right-[8%] top-[8%] size-28 rounded-full bg-[#fab937]" />
-              <div className="communique-zigzag absolute left-[8%] top-[18%] h-16 w-56" />
-              <div className="absolute bottom-[20%] right-[10%] h-3 w-[72%] -rotate-6 bg-[#df3946]" />
-              <div className="absolute bottom-[16%] right-[4%] h-3 w-[52%] -rotate-6 bg-[#fab937]" />
-              <div className="absolute bottom-[6%] left-[8%] font-display text-[clamp(7rem,13vw,11rem)] font-black leading-none text-[#efe6d1]/10">
-                2022
-              </div>
-              <div className="absolute bottom-[8%] right-[8%] text-right">
-                <p className="text-xs font-extrabold uppercase tracking-[0.3em] text-[#00a875]">
-                  Tanzania Expedition
-                </p>
-                <p className="mt-2 font-display text-5xl font-black uppercase leading-none text-[#efe6d1]">
-                  Tanzania
-                  <span className="block text-[#fab937]">2022</span>
-                </p>
-              </div>
+              <img
+                src="/media/communique-illustration-exact.webp"
+                alt=""
+                className="max-h-[500px] w-auto max-w-full object-contain object-bottom"
+              />
             </div>
           </div>
         </section>
