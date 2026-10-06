@@ -40,7 +40,7 @@ export function SiteShell({
             aria-label="Tanzania Expedition"
           >
             <img
-              src="/media/communique-logo.webp"
+              src="/media/communique-logo-exact.webp"
               alt="Tanzania Expedition"
               className="block h-[46px] w-[194px] object-contain object-center"
             />
@@ -125,7 +125,7 @@ export function SiteShell({
         <div className="mx-auto grid max-w-7xl gap-10 px-5 py-12 md:grid-cols-[1.2fr_.8fr] lg:px-8">
           <div>
             <img
-              src="/media/communique-logo.webp"
+              src="/media/communique-logo-exact.webp"
               alt="Tanzania Expedition"
               className="block h-16 w-[280px] object-contain object-left"
             />
