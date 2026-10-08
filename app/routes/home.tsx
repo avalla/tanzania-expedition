@@ -192,8 +192,8 @@ export default function Home({ loaderData }: Route.ComponentProps) {
           <div className="communique-zigzag absolute right-[5%] top-20 hidden h-10 w-48 opacity-90 lg:block" />
           <div className="absolute bottom-0 left-0 right-0 h-8 bg-[#df3946]" />
 
-          <div className="relative mx-auto grid w-full max-w-7xl gap-10 px-5 pb-8 pt-20 lg:grid-cols-[1.04fr_.96fr] lg:items-center lg:px-8 lg:pb-8">
-            <div className="relative z-10">
+          <div className="relative mx-auto grid w-full max-w-7xl gap-12 px-5 pb-8 pt-14 sm:pt-20 lg:grid-cols-12 lg:items-center lg:gap-12 lg:px-8 lg:pb-8">
+            <div className="relative z-10 lg:col-span-7">
               <p className="mb-5 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.24em] text-[#fab937]">
                 <MapPin className="size-4" />
                 {copy.hero.eyebrow}
@@ -238,7 +238,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
 
             <div
               aria-hidden="true"
-              className="relative mx-auto flex min-h-[520px] w-full max-w-[620px] items-end justify-center self-end overflow-hidden"
+              className="relative mx-auto flex min-h-[320px] w-full max-w-[620px] items-end justify-center self-end overflow-hidden sm:min-h-[440px] lg:col-span-5 lg:min-h-[520px]"
             >
               <img
                 src="/media/communique-illustration-updated.svg"
@@ -250,7 +250,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
         </section>
 
         <section id="promise" className="bg-[#efe6d1] text-[#504e53]">
-          <div className="mx-auto max-w-7xl px-5 py-24 lg:px-8 lg:py-32">
+          <div className="mx-auto max-w-7xl px-5 py-20 sm:py-24 lg:px-8 lg:py-28">
             <EditorialBlock
               eyebrow={editorial.originEyebrow}
               title={editorial.originTitle}
@@ -258,11 +258,11 @@ export default function Home({ loaderData }: Route.ComponentProps) {
               tone="light"
             />
 
-            <div className="mt-16 grid auto-rows-fr gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="mt-14 grid auto-rows-fr gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {promiseCards.map(({ Icon, title, body, accent }) => (
                 <article
                   key={title}
-                  className="relative flex h-full flex-col overflow-hidden rounded-[1.6rem] border border-[#504e53]/12 bg-[#f8f1e2] p-6 sm:p-7"
+                  className="relative flex h-full flex-col overflow-hidden rounded-[1.6rem] border border-[#504e53]/12 bg-[#f8f1e2] p-6 transition-transform duration-200 hover:-translate-y-1 hover:shadow-lg sm:p-7"
                 >
                   <div
                     className="absolute inset-x-0 top-0 h-2"
@@ -283,7 +283,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
 
         <section className="relative overflow-hidden bg-[#545156] text-[#efe6d1]">
           <div className="communique-slashes absolute -right-16 top-10 h-52 w-72 opacity-30" />
-          <div className="mx-auto max-w-7xl px-5 py-24 lg:px-8 lg:py-32">
+          <div className="mx-auto max-w-7xl px-5 py-20 sm:py-24 lg:px-8 lg:py-28">
             <EditorialBlock
               eyebrow={editorial.restartEyebrow}
               title={editorial.restartTitle}
@@ -296,9 +296,9 @@ export default function Home({ loaderData }: Route.ComponentProps) {
         </section>
 
         <section id="documentary" className="bg-[#efe6d1] text-[#504e53]">
-          <div className="mx-auto max-w-7xl px-5 py-24 lg:px-8 lg:py-32">
-            <div className="grid min-w-0 gap-10 lg:grid-cols-[minmax(0,.82fr)_minmax(0,1.18fr)] lg:items-center">
-              <div>
+          <div className="mx-auto max-w-7xl px-5 py-20 sm:py-24 lg:px-8 lg:py-28">
+            <div className="grid min-w-0 gap-10 lg:grid-cols-12 lg:items-center lg:gap-14">
+              <div className="min-w-0 lg:col-span-5">
                 <p className="flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.25em] text-[#df3946]">
                   <Youtube className="size-4" />
                   {documentary.eyebrow}
@@ -320,7 +320,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                 </a>
               </div>
 
-              <div className="min-w-0 overflow-hidden rounded-[1.8rem] border-[4px] border-[#545156] bg-black shadow-xl">
+              <div className="min-w-0 overflow-hidden rounded-[1.8rem] border-[4px] border-[#545156] bg-black shadow-xl lg:col-span-7">
                 <div className="aspect-video">
                   <iframe
                     className="h-full w-full"
@@ -337,7 +337,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
         </section>
 
         <section className="bg-[#545156] text-[#efe6d1]">
-          <div className="mx-auto max-w-7xl px-5 py-24 lg:px-8 lg:py-32">
+          <div className="mx-auto max-w-7xl px-5 py-20 sm:py-24 lg:px-8 lg:py-28">
             <div className="grid gap-12 lg:grid-cols-[.86fr_1.14fr]">
               <div>
                 <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#00a875]">
@@ -396,7 +396,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
         </section>
 
         <section className="bg-[#efe6d1] text-[#504e53]">
-          <div className="mx-auto max-w-7xl px-5 py-24 lg:px-8 lg:py-32">
+          <div className="mx-auto max-w-7xl px-5 py-20 sm:py-24 lg:px-8 lg:py-28">
             <div className="grid gap-10 lg:grid-cols-[.8fr_1.2fr]">
               <div>
                 <p className="text-xs font-extrabold uppercase tracking-[0.25em] text-[#00a875]">
@@ -454,8 +454,8 @@ export default function Home({ loaderData }: Route.ComponentProps) {
 
         <section className="relative overflow-hidden bg-[#df3946] text-white">
           <div className="communique-zigzag absolute right-8 top-8 h-12 w-56 opacity-45" />
-          <div className="mx-auto grid max-w-7xl gap-10 px-5 py-20 lg:grid-cols-[minmax(0,1fr)_minmax(0,.82fr)] lg:items-center lg:px-8 lg:py-28">
-            <div>
+          <div className="mx-auto grid max-w-7xl gap-12 px-5 py-20 lg:grid-cols-12 lg:items-center lg:px-8 lg:py-28">
+            <div className="min-w-0 lg:col-span-7">
               <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.25em] text-[#fab937]">
                 <Music2 className="size-4" />
                 {copy.events.eyebrow}
@@ -474,7 +474,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                 <ArrowRight className="size-4" />
               </Link>
             </div>
-            <div className="min-w-0 self-center rounded-[1.6rem] bg-[#545156] p-6 sm:p-8">
+            <div className="min-w-0 self-center rounded-[1.6rem] bg-[#545156] p-6 sm:p-8 lg:col-span-5">
               <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#fab937]">
                 Benefit calendar
               </span>
