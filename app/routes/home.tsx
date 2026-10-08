@@ -199,7 +199,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                 {copy.hero.eyebrow}
               </p>
 
-              <h1 className="text-balance font-display text-[clamp(4.2rem,8vw,8rem)] font-black uppercase leading-[0.82] tracking-[-0.035em]">
+              <h1 className="text-balance font-display text-[clamp(3.3rem,8vw,8rem)] font-black uppercase leading-[0.82] tracking-[-0.035em]">
                 <span className="block">{copy.hero.title.split(".")[0]}.</span>
                 <span className="mt-2 block text-[#fab937]">
                   {copy.hero.title.split(".").slice(1).join(".").trim()}
@@ -210,7 +210,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                 {copy.hero.lead}
               </p>
 
-              <div className="mt-9 flex flex-wrap gap-3">
+              <div className="mt-9 flex flex-wrap items-center gap-3">
                 <Link
                   to={hrefFor(lang, "support")}
                   className="inline-flex min-h-12 items-center gap-2 rounded-full bg-[#df3946] px-7 py-3.5 font-bold text-white transition hover:-translate-y-0.5 hover:bg-[#eb4854]"
@@ -258,11 +258,11 @@ export default function Home({ loaderData }: Route.ComponentProps) {
               tone="light"
             />
 
-            <div className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="mt-16 grid auto-rows-fr gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {promiseCards.map(({ Icon, title, body, accent }) => (
                 <article
                   key={title}
-                  className="relative overflow-hidden rounded-[1.6rem] border border-[#504e53]/12 bg-[#f8f1e2] p-7"
+                  className="relative flex h-full flex-col overflow-hidden rounded-[1.6rem] border border-[#504e53]/12 bg-[#f8f1e2] p-6 sm:p-7"
                 >
                   <div
                     className="absolute inset-x-0 top-0 h-2"
@@ -272,7 +272,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                   <h3 className="mt-6 font-display text-3xl font-black uppercase">
                     {title}
                   </h3>
-                  <p className="mt-2 text-sm leading-6 text-[#504e53]/68">
+                  <p className="mt-3 text-sm leading-6 text-[#504e53]/80">
                     {body}
                   </p>
                 </article>
@@ -297,7 +297,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
 
         <section id="documentary" className="bg-[#efe6d1] text-[#504e53]">
           <div className="mx-auto max-w-7xl px-5 py-24 lg:px-8 lg:py-32">
-            <div className="grid gap-12 lg:grid-cols-[.74fr_1.26fr] lg:items-center">
+            <div className="grid min-w-0 gap-10 lg:grid-cols-[minmax(0,.82fr)_minmax(0,1.18fr)] lg:items-center">
               <div>
                 <p className="flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.25em] text-[#df3946]">
                   <Youtube className="size-4" />
@@ -320,7 +320,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                 </a>
               </div>
 
-              <div className="overflow-hidden rounded-[1.8rem] border-[6px] border-[#545156] bg-black shadow-xl">
+              <div className="min-w-0 overflow-hidden rounded-[1.8rem] border-[4px] border-[#545156] bg-black shadow-xl">
                 <div className="aspect-video">
                   <iframe
                     className="h-full w-full"
@@ -362,11 +362,11 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                 </Link>
               </div>
 
-              <div className="grid gap-4">
+              <div className="grid content-start gap-4">
                 {currentCards.map(({ Icon, title, body }, index) => (
                   <article
                     key={title}
-                    className="rounded-[1.6rem] border border-white/12 bg-white/[0.045] p-7"
+                    className="rounded-[1.6rem] border border-white/12 bg-white/[0.045] p-6 sm:p-7"
                   >
                     <div className="flex items-start gap-5">
                       <div
@@ -383,7 +383,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                         <h3 className="font-display text-3xl font-black uppercase">
                           {title}
                         </h3>
-                        <p className="mt-2 text-sm leading-6 text-[#efe6d1]/62">
+                        <p className="mt-2 text-sm leading-6 text-[#efe6d1]/80">
                           {body}
                         </p>
                       </div>
@@ -416,37 +416,37 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                 href={INSTAGRAM_URL}
                 target="_blank"
                 rel="noreferrer"
-                className="group rounded-[1.6rem] bg-[#df3946] p-8 text-white"
+                className="group rounded-[1.6rem] bg-[#df3946] p-8 text-white transition-transform hover:-translate-y-1 focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#15466c]"
               >
                 <Instagram className="size-8 text-[#fab937]" />
                 <h3 className="mt-20 font-display text-4xl font-black uppercase">
                   Instagram
                 </h3>
-                <p className="mt-3 text-sm text-white/65">@drops.in.the.ocean</p>
+                <p className="mt-3 text-sm text-white/90">@drops.in.the.ocean</p>
               </a>
               <a
                 href={FACEBOOK_URL}
                 target="_blank"
                 rel="noreferrer"
-                className="group rounded-[1.6rem] bg-[#00a875] p-8 text-white"
+                className="group rounded-[1.6rem] bg-[#00a875] p-8 text-white transition-transform hover:-translate-y-1 focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#15466c]"
               >
                 <Facebook className="size-8 text-[#fab937]" />
                 <h3 className="mt-20 font-display text-4xl font-black uppercase">
                   Facebook
                 </h3>
-                <p className="mt-3 text-sm text-white/65">Tanzania Expedition</p>
+                <p className="mt-3 text-sm text-white/90">Tanzania Expedition</p>
               </a>
               <a
                 href={YOUTUBE_URL}
                 target="_blank"
                 rel="noreferrer"
-                className="group rounded-[1.6rem] bg-[#15466c] p-8 text-white"
+                className="group rounded-[1.6rem] bg-[#15466c] p-8 text-white transition-transform hover:-translate-y-1 focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#df3946]"
               >
                 <Youtube className="size-8 text-[#fab937]" />
                 <h3 className="mt-20 font-display text-4xl font-black uppercase">
                   YouTube
                 </h3>
-                <p className="mt-3 text-sm text-white/65">Tanzania 2022</p>
+                <p className="mt-3 text-sm text-white/90">Tanzania 2022</p>
               </a>
             </div>
           </div>
@@ -454,7 +454,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
 
         <section className="relative overflow-hidden bg-[#df3946] text-white">
           <div className="communique-zigzag absolute right-8 top-8 h-12 w-56 opacity-45" />
-          <div className="mx-auto grid max-w-7xl gap-12 px-5 py-24 lg:grid-cols-[1fr_.82fr] lg:px-8 lg:py-28">
+          <div className="mx-auto grid max-w-7xl gap-10 px-5 py-20 lg:grid-cols-[minmax(0,1fr)_minmax(0,.82fr)] lg:items-center lg:px-8 lg:py-28">
             <div>
               <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.25em] text-[#fab937]">
                 <Music2 className="size-4" />
@@ -474,7 +474,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                 <ArrowRight className="size-4" />
               </Link>
             </div>
-            <div className="self-end rounded-[1.6rem] bg-[#545156] p-8">
+            <div className="min-w-0 self-center rounded-[1.6rem] bg-[#545156] p-6 sm:p-8">
               <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#fab937]">
                 Benefit calendar
               </span>
@@ -482,7 +482,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                 {["Italy", "Europe", "Tanzania Expedition"].map((item) => (
                   <div
                     key={item}
-                    className="flex items-center justify-between border-b border-white/12 pb-4"
+                    className="flex flex-wrap items-center justify-between gap-3 border-b border-white/12 pb-4"
                   >
                     <span className="font-display text-2xl font-black uppercase">
                       {item}
@@ -521,11 +521,11 @@ export default function Home({ loaderData }: Route.ComponentProps) {
               </Link>
             </div>
 
-            <div className="rounded-[1.6rem] bg-[#efe6d1] p-5 text-center text-[#504e53] shadow-xl">
+            <div className="mx-auto w-full max-w-[280px] rounded-[1.6rem] bg-[#efe6d1] p-5 text-center text-[#504e53] shadow-xl lg:mx-0">
               <img
                 src="/media/qr-donation.webp"
                 alt="QR code Tanzania Expedition"
-                className="mx-auto w-full max-w-[220px] rounded-xl"
+                className="mx-auto block aspect-square w-full max-w-[220px] rounded-xl bg-[#545156] object-contain"
               />
               <p className="mt-4 text-xs font-bold uppercase tracking-[0.18em] text-[#df3946]">
                 {qrLabel}
