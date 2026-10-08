@@ -189,19 +189,11 @@ export default function Home({ loaderData }: Route.ComponentProps) {
     <SiteShell lang={lang}>
       <main>
         <section className="relative flex min-h-[94svh] overflow-hidden bg-[#545156] pt-20 text-[#efe6d1]">
-          <div className="absolute inset-x-0 top-20 h-3 bg-[#df3946]" />
-          <div className="communique-zigzag absolute right-[5%] top-32 hidden h-10 w-48 opacity-90 lg:block" />
-          <div className="absolute right-[9%] top-[23%] hidden size-20 rounded-full bg-[#fab937] lg:block" />
+          <div className="communique-zigzag absolute right-[5%] top-20 hidden h-10 w-48 opacity-90 lg:block" />
           <div className="absolute bottom-0 left-0 right-0 h-8 bg-[#df3946]" />
 
-          <div className="relative mx-auto grid w-full max-w-7xl gap-10 px-5 pb-20 pt-20 lg:grid-cols-[1.04fr_.96fr] lg:items-center lg:px-8 lg:pb-24">
+          <div className="relative mx-auto grid w-full max-w-7xl gap-10 px-5 pb-8 pt-20 lg:grid-cols-[1.04fr_.96fr] lg:items-center lg:px-8 lg:pb-8">
             <div className="relative z-10">
-              <img
-                src="/media/communique-logo-updated.svg"
-                alt="Tanzania Expedition"
-                className="mb-10 block h-auto w-[min(440px,80vw)] object-contain object-left"
-              />
-
               <p className="mb-5 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.24em] text-[#fab937]">
                 <MapPin className="size-4" />
                 {copy.hero.eyebrow}
@@ -508,7 +500,6 @@ export default function Home({ loaderData }: Route.ComponentProps) {
 
         <section className="relative overflow-hidden bg-[#545156] text-[#efe6d1]">
           <div className="absolute inset-x-0 top-0 h-3 bg-[#fab937]" />
-          <div className="absolute bottom-0 left-0 right-0 h-8 bg-[#df3946]" />
           <div className="mx-auto grid max-w-7xl gap-10 px-5 py-24 lg:grid-cols-[1fr_280px] lg:items-center lg:px-8 lg:py-28">
             <div>
               <p className="text-xs font-extrabold uppercase tracking-[0.26em] text-[#fab937]">
