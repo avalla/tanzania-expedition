@@ -72,9 +72,9 @@ export default function Mission2022({ loaderData }: Route.ComponentProps) {
   return (
     <SiteShell lang={lang} currentPage="missions" detail="2022">
       <main className="pt-20">
-        <section className="relative min-h-[70svh] overflow-hidden border-b border-white/10 bg-[radial-gradient(circle_at_70%_25%,rgba(245,183,59,.26),transparent_22%),linear-gradient(140deg,#251711,#545156_64%)]">
+        <section className="relative min-h-[60svh] overflow-hidden border-b border-white/10 bg-[#545156]">
           <div className="grain absolute inset-0 opacity-30" />
-          <div className="relative mx-auto flex min-h-[70svh] max-w-7xl items-end px-5 py-20 lg:px-8">
+          <div className="relative mx-auto flex min-h-[60svh] max-w-7xl items-end px-5 py-20 lg:px-8">
             <div className="w-full">
               <Link
                 to={hrefFor(lang, "missions")}
@@ -88,12 +88,12 @@ export default function Mission2022({ loaderData }: Route.ComponentProps) {
                   <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#fab937]">
                     {copy.mission2022.eyebrow}
                   </p>
-                  <h1 className="mt-4 font-display text-[clamp(5rem,13vw,11rem)] font-black uppercase leading-[0.78]">
+                  <h1 className="mt-4 font-display text-[clamp(4rem,12vw,10rem)] font-black uppercase leading-[0.78]">
                     Tanzania
                     <span className="block text-[#df3946]">2022</span>
                   </h1>
                 </div>
-                <p className="max-w-md pb-2 text-base leading-7 text-white/60">
+                <p className="max-w-md pb-2 text-base leading-7 text-white/80">
                   {copy.mission2022.body}
                 </p>
               </div>
@@ -110,7 +110,7 @@ export default function Mission2022({ loaderData }: Route.ComponentProps) {
                   <h2 className="mt-6 font-display text-4xl font-black uppercase">
                     {title}
                   </h2>
-                  <p className="mt-3 text-sm leading-6 text-black/55">{body}</p>
+                  <p className="mt-3 text-sm leading-6 text-black/75">{body}</p>
                 </article>
               ))}
             </div>
@@ -130,7 +130,7 @@ export default function Mission2022({ loaderData }: Route.ComponentProps) {
               <h2 className="mt-4 font-display text-5xl font-black uppercase leading-none md:text-7xl">
                 {copy.stories.title}
               </h2>
-              <p className="mt-6 text-white/55">
+              <p className="mt-6 text-white/80">
                 {copy.mission2022.mediaBody}
               </p>
             </div>
