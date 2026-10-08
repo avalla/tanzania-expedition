@@ -197,7 +197,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
           <div className="relative mx-auto grid w-full max-w-7xl gap-10 px-5 pb-20 pt-20 lg:grid-cols-[1.04fr_.96fr] lg:items-center lg:px-8 lg:pb-24">
             <div className="relative z-10">
               <img
-                src="/media/communique-logo-exact.webp"
+                src="/media/communique-logo-updated.svg"
                 alt="Tanzania Expedition"
                 className="mb-10 block h-auto w-[min(440px,80vw)] object-contain object-left"
               />
@@ -249,7 +249,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
               className="relative mx-auto flex min-h-[520px] w-full max-w-[620px] items-end justify-center self-end overflow-hidden"
             >
               <img
-                src="/media/communique-illustration-exact.webp"
+                src="/media/communique-illustration-updated.svg"
                 alt=""
                 className="max-h-[500px] w-auto max-w-full object-contain object-bottom"
               />
