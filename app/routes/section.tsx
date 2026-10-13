@@ -1,13 +1,7 @@
 import {
   ArrowRight,
-  CalendarDays,
-  Droplets,
   Facebook,
-  HeartHandshake,
   Instagram,
-  MapPin,
-  Music2,
-  Shirt,
   Youtube,
 } from "lucide-react";
 import { Link, redirect } from "react-router";
@@ -63,6 +57,9 @@ export function meta({ data }: Route.MetaArgs) {
   ];
 }
 
+const sectionH2 =
+  "text-balance font-display text-4xl font-black uppercase leading-[0.95] md:text-6xl";
+
 function PageIntro({
   eyebrow,
   title,
@@ -74,13 +71,13 @@ function PageIntro({
 }) {
   return (
     <div className="max-w-5xl">
-      <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#fab937]">
-        {eyebrow}
-      </p>
-      <h1 className="text-balance mt-5 font-display text-[clamp(3.5rem,9vw,8.5rem)] font-black uppercase leading-[0.88]">
+      <p className="text-sm font-bold text-[#fab937]">{eyebrow}</p>
+      <h1 className="text-balance mt-5 font-display text-[clamp(3.5rem,9vw,8rem)] font-black uppercase leading-[0.9]">
         {title}
       </h1>
-      <p className="mt-7 max-w-2xl text-lg leading-8 text-white/80">{body}</p>
+      <p className="mt-7 max-w-[60ch] text-lg leading-8 text-[#efe6d1]/90">
+        {body}
+      </p>
     </div>
   );
 }
@@ -94,12 +91,13 @@ function LongCopy({
 }) {
   return (
     <div className="grid gap-10 lg:grid-cols-12 lg:gap-14">
-      <h2 className="text-balance font-display text-5xl font-black uppercase leading-[0.92] text-[#fab937] md:text-7xl lg:col-span-5">
-        {title}
-      </h2>
+      <h2 className={`${sectionH2} text-[#fab937] lg:col-span-5`}>{title}</h2>
       <div className="space-y-6 lg:col-span-7">
         {paragraphs.map((paragraph) => (
-          <p key={paragraph} className="text-lg leading-8 text-white/80">
+          <p
+            key={paragraph}
+            className="max-w-[68ch] text-lg leading-8 text-[#efe6d1]/88"
+          >
             {paragraph}
           </p>
         ))}
@@ -111,36 +109,19 @@ function LongCopy({
 export default function SectionPage({ loaderData }: Route.ComponentProps) {
   const { lang, page, copy, editorial } = loaderData;
 
-  const projectCards = [
-    {
-      Icon: Droplets,
-      title: copy.current.cards[0][0],
-      body: copy.current.cards[0][1],
-    },
-    {
-      Icon: HeartHandshake,
-      title: copy.current.cards[1][0],
-      body: copy.current.cards[1][1],
-    },
-    {
-      Icon: MapPin,
-      title: copy.current.cards[2][0],
-      body: copy.current.cards[2][1],
-    },
+  const socials = [
+    { href: INSTAGRAM_URL, Icon: Instagram, name: "Instagram", handle: "@drops.in.the.ocean" },
+    { href: FACEBOOK_URL, Icon: Facebook, name: "Facebook", handle: "Tanzania Expedition" },
+    { href: YOUTUBE_URL, Icon: Youtube, name: "YouTube", handle: "Tanzania 2022" },
   ];
 
-  const supportCards = [
-    { Icon: HeartHandshake, label: copy.support.donate },
-    { Icon: Music2, label: copy.support.attend },
-    { Icon: Shirt, label: copy.support.tshirt },
-  ];
+  const supportWays = [copy.support.donate, copy.support.attend, copy.support.tshirt];
 
   return (
     <SiteShell lang={lang} currentPage={page}>
       <main className="pt-20">
         <section className="relative overflow-hidden border-b border-white/10 bg-[#545156]">
           <div className="communique-slashes absolute -right-20 top-8 h-52 w-80 opacity-25" />
-          <div className="grain absolute inset-0 opacity-25" />
           <div className="relative mx-auto max-w-7xl px-5 py-20 sm:py-24 lg:px-8 lg:py-28">
             {page === "project" && (
               <PageIntro
@@ -188,58 +169,57 @@ export default function SectionPage({ loaderData }: Route.ComponentProps) {
         </section>
 
         {page === "project" && (
-          <section className="mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-28">
+          <section className="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-24">
             <LongCopy
               title={editorial.kimotorokTitle}
               paragraphs={editorial.kimotorokParagraphs}
             />
 
-            <div className="mt-14 grid gap-5 md:grid-cols-3">
-              {projectCards.map(({ Icon, title, body }) => (
-                <article
-                  key={title}
-                  className="rounded-3xl border border-white/10 bg-white/[0.05] p-7 transition-colors hover:border-[#fab937]/30"
-                >
-                  <Icon className="size-7 text-[#fab937]" />
-                  <h2 className="mt-6 font-display text-4xl font-black uppercase">
+            <ul className="mt-14 grid divide-y divide-[#efe6d1]/25 border-y border-[#efe6d1]/25 md:grid-cols-3 md:divide-x md:divide-y-0">
+              {copy.current.cards.map(([title, body]) => (
+                <li key={title} className="py-7 md:px-7 md:first:pl-0 md:last:pr-0">
+                  <h2 className="font-display text-3xl font-black uppercase leading-none text-[#fab937]">
                     {title}
                   </h2>
-                  <p className="mt-3 text-sm leading-6 text-white/80">{body}</p>
-                </article>
+                  <p className="mt-3 max-w-[40ch] text-base leading-7 text-[#efe6d1]/88">
+                    {body}
+                  </p>
+                </li>
               ))}
-            </div>
+            </ul>
 
-            <div className="expedition-pattern mt-10 overflow-hidden rounded-[2rem] border border-[#00a875]/25 bg-[#00a875]/8 p-8 lg:p-10">
-              <p className="relative max-w-3xl text-lg leading-8 text-white/72">
-                {copy.promise.body}
-              </p>
-            </div>
+            <p className="mt-12 max-w-[68ch] text-lg leading-8 text-[#efe6d1]/88">
+              {copy.promise.body}
+            </p>
           </section>
         )}
 
         {page === "missions" && (
-          <section className="mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-28">
+          <section className="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-24">
             <Link
               to={hrefFor(lang, "missions", "2022")}
-              className="group block rounded-[2rem] border border-white/10 bg-white/[0.035] p-8 transition hover:border-[#fab937]/30 lg:p-10"
+              className="group block border-y border-[#efe6d1]/25 py-10 transition-colors hover:bg-white/5"
             >
-              <div className="grid gap-10 md:grid-cols-[.4fr_1fr] md:items-end">
-                <div className="font-display text-[8rem] font-black leading-none text-[#fab937]">
+              <div className="grid gap-8 md:grid-cols-[.4fr_1fr] md:items-end">
+                <div
+                  aria-hidden="true"
+                  className="font-display text-[8rem] font-black leading-none text-[#fab937]"
+                >
                   22
                 </div>
                 <div>
-                  <p className="text-xs font-bold uppercase tracking-[0.22em] text-white/40">
+                  <p className="text-sm font-bold text-[#efe6d1]/75">
                     Tanzania · 2022
                   </p>
-                  <h2 className="mt-3 font-display text-5xl font-black uppercase">
+                  <h2 className="mt-3 font-display text-4xl font-black uppercase md:text-5xl">
                     {copy.mission2022.title}
                   </h2>
-                  <p className="mt-4 max-w-2xl text-white/55">
+                  <p className="mt-4 max-w-[60ch] text-[#efe6d1]/88">
                     {copy.mission2022.body}
                   </p>
-                  <span className="mt-7 inline-flex items-center gap-2 text-sm font-bold text-white">
+                  <span className="mt-7 inline-flex items-center gap-2 text-sm font-bold text-white underline decoration-2 underline-offset-4">
                     {copy.mission2022.cta}
-                    <ArrowRight className="size-4 transition group-hover:translate-x-1" />
+                    <ArrowRight className="size-4" aria-hidden="true" />
                   </span>
                 </div>
               </div>
@@ -248,69 +228,47 @@ export default function SectionPage({ loaderData }: Route.ComponentProps) {
         )}
 
         {page === "stories" && (
-          <section className="mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-28">
-            <div className="grid gap-10 lg:grid-cols-[.8fr_1.2fr]">
-              <h2 className="text-balance font-display text-5xl font-black uppercase leading-[0.92] text-[#fab937] md:text-7xl lg:col-span-5">
+          <section className="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-24">
+            <div className="grid gap-10 lg:grid-cols-[.8fr_1.2fr] lg:gap-16">
+              <h2 className={`${sectionH2} text-[#fab937]`}>
                 {editorial.socialTitle}
               </h2>
-              <p className="text-lg leading-8 text-white/80">
-                {editorial.socialBody}
-              </p>
+              <div>
+                <p className="max-w-[68ch] text-lg leading-8 text-[#efe6d1]/88">
+                  {editorial.socialBody}
+                </p>
+                <ul
+                  aria-label={editorial.socialLinksLabel}
+                  className="mt-8 flex flex-wrap gap-x-8 gap-y-4"
+                >
+                  {socials.map(({ href, Icon, name, handle }) => (
+                    <li key={name}>
+                      <a
+                        href={href}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex min-h-11 items-center gap-3 font-bold text-[#efe6d1] underline decoration-2 underline-offset-4 hover:text-[#fab937]"
+                      >
+                        <Icon className="size-5" aria-hidden="true" />
+                        <span>
+                          {name}
+                          <span className="ml-2 font-normal text-[#efe6d1]/80 no-underline">
+                            {handle}
+                          </span>
+                        </span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
 
-            <div className="mt-12 grid gap-5 md:grid-cols-3">
-              <a
-                href={INSTAGRAM_URL}
-                target="_blank"
-                rel="noreferrer"
-                className="rounded-[2rem] border border-[#df3946]/30 bg-[#df3946] p-8"
-              >
-                <Instagram className="size-8 text-[#fab937]" />
-                <h2 className="mt-20 font-display text-5xl font-black uppercase">
-                  Instagram
-                </h2>
-                <p className="mt-3 text-sm text-white/85">
-                  @drops.in.the.ocean
-                </p>
-              </a>
-
-              <a
-                href={FACEBOOK_URL}
-                target="_blank"
-                rel="noreferrer"
-                className="rounded-[2rem] border border-[#00a875]/30 bg-[#00a875] p-8"
-              >
-                <Facebook className="size-8 text-[#fab937]" />
-                <h2 className="mt-20 font-display text-5xl font-black uppercase">
-                  Facebook
-                </h2>
-                <p className="mt-3 text-sm text-white/85">
-                  Tanzania Expedition
-                </p>
-              </a>
-
-              <a
-                href={YOUTUBE_URL}
-                target="_blank"
-                rel="noreferrer"
-                className="rounded-[2rem] border border-[#fab937]/30 bg-[#15466c] p-8"
-              >
-                <Youtube className="size-8 text-[#df3946]" />
-                <h2 className="mt-20 font-display text-5xl font-black uppercase">
-                  YouTube
-                </h2>
-                <p className="mt-3 text-sm text-white/85">
-                  Tanzania 2022 documentary
-                </p>
-              </a>
-            </div>
-
-            <div className="mt-8 overflow-hidden rounded-[2rem] border border-white/10 bg-black">
+            <div className="mt-14 overflow-hidden rounded-xl border-4 border-[#efe6d1]/25 bg-[#2b292d]">
               <div className="aspect-video">
                 <iframe
                   className="h-full w-full"
                   src="https://www.youtube-nocookie.com/embed/51VFiMRKIp8?rel=0"
-                  title="Tanzania Expedition 2022 documentary"
+                  title={editorial.documentaryIframeTitle}
                   loading="lazy"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
@@ -318,56 +276,43 @@ export default function SectionPage({ loaderData }: Route.ComponentProps) {
               </div>
             </div>
 
-            <div className="mt-5 rounded-3xl border border-dashed border-white/15 p-8 text-white/50">
+            <p className="mt-6 max-w-[68ch] text-base leading-7 text-[#efe6d1]/80">
               {copy.mission2022.mediaBody}
-            </div>
+            </p>
           </section>
         )}
 
         {page === "events" && (
           <section className="relative overflow-hidden">
-            <div className="expedition-party-grid absolute inset-0 opacity-15" />
-            <div className="relative mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-28">
-              <div className="grid gap-5 md:grid-cols-2">
-                <div className="rounded-[2rem] bg-[#df3946] p-8 text-white">
-                  <Music2 className="size-8 text-[#fab937]" />
-                  <h2 className="mt-16 font-display text-5xl font-black uppercase">
-                    Benefit parties
-                  </h2>
-                  <p className="mt-4 max-w-md text-white/82">
-                    {editorial.eventsLongBody}
-                  </p>
-                </div>
-
-                <div className="rounded-[2rem] border border-white/10 bg-white/[0.035] p-8">
-                  <CalendarDays className="size-8 text-[#fab937]" />
-                  <h2 className="mt-16 font-display text-5xl font-black uppercase">
-                    Coming soon
-                  </h2>
-                  <p className="mt-4 text-white/50">{copy.events.empty}</p>
-                </div>
+            <div className="relative mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-24">
+              <div className="max-w-3xl bg-[#b52b37] p-8 text-white md:p-10">
+                <h2 className={sectionH2}>{copy.events.title}</h2>
+                <p className="mt-5 max-w-[60ch] text-lg leading-8 text-white/92">
+                  {editorial.eventsLongBody}
+                </p>
+                <p className="mt-5 text-base text-white/80">{copy.events.empty}</p>
               </div>
             </div>
           </section>
         )}
 
         {page === "about" && (
-          <section className="mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-28">
+          <section className="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-24">
             <LongCopy
               title={editorial.originTitle}
               paragraphs={editorial.originParagraphs}
             />
 
-            <div className="mt-16 grid gap-8 lg:grid-cols-[1fr_.8fr]">
-              <div className="rounded-[2rem] border border-white/10 p-8 lg:p-10">
-                <h2 className="font-display text-4xl font-black uppercase text-[#00a875]">
+            <div className="mt-16 grid gap-12 lg:grid-cols-[1fr_.8fr] lg:gap-16">
+              <div className="border-t-2 border-[#efe6d1]/40 pt-8">
+                <h2 className="font-display text-4xl font-black uppercase leading-none text-[#fab937]">
                   {editorial.restartTitle}
                 </h2>
                 <div className="mt-5 space-y-5">
                   {editorial.restartParagraphs.map((paragraph) => (
                     <p
                       key={paragraph}
-                      className="text-lg leading-8 text-white/66"
+                      className="max-w-[68ch] text-lg leading-8 text-[#efe6d1]/88"
                     >
                       {paragraph}
                     </p>
@@ -375,92 +320,89 @@ export default function SectionPage({ loaderData }: Route.ComponentProps) {
                 </div>
               </div>
 
-              <aside className="rounded-[2rem] bg-[#efe6d1] p-8 text-[#504e53] lg:p-10">
-                <p className="text-xs font-extrabold uppercase tracking-[0.22em] text-[#df3946]">
+              <aside className="self-start rounded-xl bg-[#efe6d1] p-8 text-[#504e53] lg:p-10">
+                <p className="font-display text-4xl font-black text-[#b52b37]">
                   2026
                 </p>
-                <p className="mt-5 leading-7 text-black/65">
-                  {copy.about.note}
-                </p>
+                <p className="mt-4 leading-7">{copy.about.note}</p>
               </aside>
             </div>
           </section>
         )}
 
         {page === "support" && (
-          <section className="mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-28">
-            <div className="grid gap-5 md:grid-cols-3">
-              {supportCards.map(({ Icon, label }) => (
-                <article
+          <section className="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-24">
+            <ul className="flex flex-wrap gap-x-10 gap-y-3 border-y border-[#efe6d1]/25 py-6">
+              {supportWays.map((label, index) => (
+                <li
                   key={label}
-                  className="rounded-3xl border border-white/10 bg-white/[0.05] p-7 transition-colors hover:border-[#fab937]/30"
+                  className="flex items-baseline gap-3 font-display text-3xl font-black uppercase"
                 >
-                  <Icon className="size-7 text-[#00a875]" />
-                  <h2 className="mt-6 font-display text-4xl font-black uppercase">
-                    {label}
-                  </h2>
-                </article>
+                  <span aria-hidden="true" className="text-[#fab937]">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  {label}
+                </li>
               ))}
-            </div>
+            </ul>
 
-            <div className="mt-10 rounded-[2rem] bg-[#fab937] p-8 text-[#504e53] lg:p-10">
-              <p className="text-xs font-extrabold uppercase tracking-[0.22em] text-[#9f281f]">
-                {editorial.donateEyebrow}
-              </p>
-              <h2 className="mt-4 max-w-3xl font-display text-5xl font-black uppercase leading-[0.92] md:text-7xl">
+            <div className="mt-12 max-w-4xl">
+              <h2 className="text-balance font-display text-5xl font-black uppercase leading-[0.92] text-[#fab937] md:text-7xl">
                 {editorial.donateTitle}
               </h2>
-              <p className="mt-5 max-w-2xl text-lg leading-8 text-black/65">
+              <p className="mt-5 max-w-[60ch] text-lg leading-8 text-[#efe6d1]/88">
                 {editorial.donateBody}
               </p>
             </div>
 
-            <div className="mt-5 grid gap-5 lg:grid-cols-[1fr_300px]">
-              <div className="rounded-[2rem] bg-[#efe6d1] p-8 text-[#504e53] lg:p-10">
-              <p className="text-xs font-extrabold uppercase tracking-[0.22em] text-[#df3946]">
-                {copy.support.donationTitle}
-              </p>
-              <div className="mt-7 grid gap-8 md:grid-cols-2">
-                <div>
-                  <p className="text-sm font-semibold text-black/45">Name</p>
-                  <p className="mt-1 text-lg font-bold">
-                    {copy.support.accountName}
-                  </p>
+            <div className="mt-10 grid gap-5 lg:grid-cols-[1fr_300px]">
+              <div className="rounded-xl bg-[#efe6d1] p-8 text-[#504e53] lg:p-10">
+                <h3 className="text-lg font-bold text-[#b52b37]">
+                  {copy.support.donationTitle}
+                </h3>
+                <div className="mt-7 grid gap-8 md:grid-cols-2">
+                  <div>
+                    <p className="text-sm font-semibold text-[#504e53]/80">
+                      {editorial.accountNameLabel}
+                    </p>
+                    <p className="mt-1 text-lg font-bold">
+                      {copy.support.accountName}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-[#504e53]/80">
+                      {copy.support.bicLabel}
+                    </p>
+                    <p className="mt-1 font-mono text-lg font-bold">
+                      {copy.support.bic}
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <p className="text-sm font-semibold text-black/45">
-                    {copy.support.bicLabel}
+                <div className="mt-8 border-t border-[#504e53]/20 pt-8">
+                  <p className="text-sm font-semibold text-[#504e53]/80">
+                    {copy.support.ibanLabel}
                   </p>
-                  <p className="mt-1 font-mono text-lg font-bold">
-                    {copy.support.bic}
+                  <p className="mt-2 break-all font-mono text-xl font-bold md:text-2xl">
+                    {copy.support.iban}
                   </p>
+                  <div className="mt-5">
+                    <CopyIbanButton
+                      iban={copy.support.iban}
+                      copyLabel={copy.support.copy}
+                      copiedLabel={copy.support.copied}
+                    />
+                  </div>
                 </div>
               </div>
-              <div className="mt-8 border-t border-black/10 pt-8">
-                <p className="text-sm font-semibold text-black/45">
-                  {copy.support.ibanLabel}
-                </p>
-                <p className="mt-2 break-all font-mono text-xl font-bold md:text-2xl">
-                  {copy.support.iban}
-                </p>
-                <div className="mt-5">
-                  <CopyIbanButton
-                    iban={copy.support.iban}
-                    copyLabel={copy.support.copy}
-                    copiedLabel={copy.support.copied}
-                  />
-                </div>
-              </div>
-            </div>
 
-              <aside className="rounded-[2rem] border border-[#fab937]/30 bg-[#545156] p-6 text-center">
+              <aside className="self-start rounded-xl border border-[#fab937]/40 bg-[#545156] p-6 text-center">
                 <img
                   src="/media/qr-donation.webp"
-                  alt="QR code Tanzania Expedition"
-                  className="mx-auto w-full max-w-[240px] rounded-2xl"
+                  alt={editorial.qrAlt}
+                  className="mx-auto w-full max-w-[240px] rounded-lg"
                 />
-                <p className="mt-5 text-xs font-bold uppercase tracking-[0.18em] text-[#fab937]">
-                  QR · Tanzania Expedition
+                <p className="mt-5 text-sm font-bold text-[#fab937]">
+                  {editorial.qrLabel}
                 </p>
               </aside>
             </div>

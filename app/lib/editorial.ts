@@ -26,6 +26,7 @@ type EditorialCopy = {
   qrLabel: string;
   qrAlt: string;
   socialLinksLabel: string;
+  accountNameLabel: string;
 };
 
 const editorial: Record<Lang, EditorialCopy> = {
@@ -64,6 +65,7 @@ const editorial: Record<Lang, EditorialCopy> = {
     qrLabel: "Scansiona il QR",
     qrAlt: "Codice QR per donare a Tanzania Expedition",
     socialLinksLabel: "Seguici",
+    accountNameLabel: "Intestatario",
   },
   en: {
     originEyebrow: "2022 · where it starts again",
@@ -100,6 +102,7 @@ const editorial: Record<Lang, EditorialCopy> = {
     qrLabel: "Scan the QR",
     qrAlt: "QR code to donate to Tanzania Expedition",
     socialLinksLabel: "Follow us",
+    accountNameLabel: "Account name",
   },
   es: {
     originEyebrow: "2022 · donde todo vuelve a empezar",
@@ -136,6 +139,7 @@ const editorial: Record<Lang, EditorialCopy> = {
     qrLabel: "Escanea el QR",
     qrAlt: "Código QR para donar a Tanzania Expedition",
     socialLinksLabel: "Síguenos",
+    accountNameLabel: "Titular",
   },
   fr: {
     originEyebrow: "2022 · là où tout recommence",
@@ -172,6 +176,7 @@ const editorial: Record<Lang, EditorialCopy> = {
     qrLabel: "Scannez le QR",
     qrAlt: "QR code pour faire un don à Tanzania Expedition",
     socialLinksLabel: "Suivez-nous",
+    accountNameLabel: "Titulaire",
   },
 };
 
