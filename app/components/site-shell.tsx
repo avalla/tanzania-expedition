@@ -36,13 +36,13 @@ export function SiteShell({
         <div className="mx-auto flex h-[74px] max-w-7xl items-center gap-5 px-5 lg:px-8">
           <Link
             to={hrefFor(lang)}
-            className="mr-auto flex h-full w-[205px] shrink-0 items-center justify-center py-2"
+            className="mr-auto flex h-full w-[130px] shrink-0 items-center justify-center py-2 sm:w-[205px]"
             aria-label="Tanzania Expedition"
           >
             <img
               src="/media/communique-logo-updated.svg"
               alt="Tanzania Expedition"
-              className="block h-[46px] w-[194px] object-contain object-center"
+              className="block h-[46px] w-full max-w-[194px] object-contain object-left sm:object-center"
             />
           </Link>
 
@@ -62,6 +62,13 @@ export function SiteShell({
               </Link>
             ))}
           </nav>
+
+          <Link
+            to={hrefFor(lang, "support")}
+            className="rounded-full bg-[#df3946] px-4 py-2 text-sm font-bold text-white lg:hidden"
+          >
+            {copy.nav.support}
+          </Link>
 
           <details className="relative hidden sm:block">
             <summary className="cursor-pointer list-none rounded-full border border-white/15 px-3 py-2 text-xs font-bold uppercase tracking-[0.14em] text-white/80 hover:bg-white/6">

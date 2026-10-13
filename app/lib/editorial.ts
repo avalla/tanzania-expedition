@@ -18,6 +18,14 @@ type EditorialCopy = {
   donateTitle: string;
   donateBody: string;
   donateCta: string;
+  documentaryEyebrow: string;
+  documentaryTitle: string;
+  documentaryBody: string;
+  documentaryCta: string;
+  documentaryIframeTitle: string;
+  qrLabel: string;
+  qrAlt: string;
+  socialLinksLabel: string;
 };
 
 const editorial: Record<Lang, EditorialCopy> = {
@@ -48,6 +56,14 @@ const editorial: Record<Lang, EditorialCopy> = {
     donateTitle: "Una donazione può diventare acqua.",
     donateBody: "Il progetto per Kimotorok viene sostenuto direttamente attraverso donazioni, benefit party e magliette. Il bonifico è il modo più immediato per contribuire alla prossima missione.",
     donateCta: "Vai ai dati per la donazione",
+    documentaryEyebrow: "Documentario · Tanzania 2022",
+    documentaryTitle: "La spedizione del 2022, raccontata dalle immagini.",
+    documentaryBody: "Il documentario raccoglie la missione svolta in Tanzania nel 2022: luoghi, incontri e momenti del progetto da cui è nata la promessa di tornare.",
+    documentaryCta: "Guarda su YouTube",
+    documentaryIframeTitle: "Documentario della spedizione Tanzania Expedition 2022",
+    qrLabel: "Scansiona il QR",
+    qrAlt: "Codice QR per donare a Tanzania Expedition",
+    socialLinksLabel: "Seguici",
   },
   en: {
     originEyebrow: "2022 · where it starts again",
@@ -76,6 +92,14 @@ const editorial: Record<Lang, EditorialCopy> = {
     donateTitle: "A donation can become water.",
     donateBody: "The Kimotorok project is supported directly through donations, benefit parties and T-shirts. A bank transfer is the most immediate way to contribute to the next mission.",
     donateCta: "Go to donation details",
+    documentaryEyebrow: "Documentary · Tanzania 2022",
+    documentaryTitle: "The 2022 expedition, told through images.",
+    documentaryBody: "The documentary follows the 2022 mission in Tanzania: places, encounters and moments from the project that led to the promise to return.",
+    documentaryCta: "Watch on YouTube",
+    documentaryIframeTitle: "Tanzania Expedition 2022 documentary",
+    qrLabel: "Scan the QR",
+    qrAlt: "QR code to donate to Tanzania Expedition",
+    socialLinksLabel: "Follow us",
   },
   es: {
     originEyebrow: "2022 · donde todo vuelve a empezar",
@@ -104,6 +128,14 @@ const editorial: Record<Lang, EditorialCopy> = {
     donateTitle: "Una donación puede convertirse en agua.",
     donateBody: "El proyecto de Kimotorok se sostiene directamente mediante donaciones, fiestas benéficas y camisetas. La transferencia bancaria es la forma más inmediata de contribuir a la próxima misión.",
     donateCta: "Ver los datos para donar",
+    documentaryEyebrow: "Documental · Tanzania 2022",
+    documentaryTitle: "La expedición de 2022, contada a través de imágenes.",
+    documentaryBody: "El documental recoge la misión realizada en Tanzania en 2022: lugares, encuentros y momentos del proyecto del que nació la promesa de volver.",
+    documentaryCta: "Ver en YouTube",
+    documentaryIframeTitle: "Documental de la expedición Tanzania Expedition 2022",
+    qrLabel: "Escanea el QR",
+    qrAlt: "Código QR para donar a Tanzania Expedition",
+    socialLinksLabel: "Síguenos",
   },
   fr: {
     originEyebrow: "2022 · là où tout recommence",
@@ -132,6 +164,14 @@ const editorial: Record<Lang, EditorialCopy> = {
     donateTitle: "Un don peut devenir de l'eau.",
     donateBody: "Le projet de Kimotorok est soutenu directement par les dons, les soirées caritatives et les T-shirts. Le virement bancaire est le moyen le plus immédiat de contribuer à la prochaine mission.",
     donateCta: "Voir les informations de don",
+    documentaryEyebrow: "Documentaire · Tanzanie 2022",
+    documentaryTitle: "L'expédition de 2022 racontée en images.",
+    documentaryBody: "Le documentaire retrace la mission menée en Tanzanie en 2022 : lieux, rencontres et moments du projet à l'origine de la promesse de revenir.",
+    documentaryCta: "Voir sur YouTube",
+    documentaryIframeTitle: "Documentaire de l'expédition Tanzania Expedition 2022",
+    qrLabel: "Scannez le QR",
+    qrAlt: "QR code pour faire un don à Tanzania Expedition",
+    socialLinksLabel: "Suivez-nous",
   },
 };
 
